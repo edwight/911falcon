@@ -27,9 +27,7 @@ $factory->define(App\Models\Contacto::class, function (Faker\Generator $faker) {
     return [
         'name' => $faker->name,
         'phone' => $faker->phoneNumber,  
-        'direccion' => $faker->address,
-        'p_referencia' =>$faker->text,
-        'descripcion' =>$faker->text,
+        //'descripcion' =>$faker->text,
     ];
 });
 /*                                                                                                            

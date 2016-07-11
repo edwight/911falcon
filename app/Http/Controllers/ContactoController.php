@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Models\Contacto;
+use App\Http\Controllers\Controller;
 
 class ContactoController extends Controller
 {
@@ -27,6 +28,8 @@ class ContactoController extends Controller
      */
     public function create()
     {
+        //$user = User::find(1);
+        //$categorylist = Category::all();
         return view('admin.contacto.create');
     }
 
@@ -38,9 +41,51 @@ class ContactoController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'phone' => 'required',
-            'name' => 'required',
+       // return $request->all();
+        $phone = $request->input('phone');//required
+        $name = $request->input('name');
+        $user = $request->input('user');//required
+        $motivos = $request->input('motivos');//required
+        $municipio = $request->input('municipio');
+        $parroquia =  $request->input('parroquia');
+        $direccion = $request->input('direccion');//required
+        $p_referencia = $request->input('p_referencia');
+        $descripcion = $request->input('descripcion');
+        $organismo = $request->input('organismo');//required
+
+        $descripcion = $request->input('nombrec');//required
+        $descripcion = $request->input('phonec');//required
+
+        return 'telefono: '.$phone. ' nombre:'.$name.' usuario: '.$user.' municipio: '.$municipio.' parroquia: '.$parroquia.' direccion: '.$descripcion;
+        $contacto = New contacto;
+        $contacto->name = $name;
+        $contacto->phone = $phone;
+        $contacto->direccion = $direccion;
+        $contacto->save();
+
+        return redirect('contacto/create');
+         /*
+        $rules = [
+            'phone' => 'required|numeric',
+            'name' => 'required|string',
+            'direccion' => 'required',
+            'descripcion' => 'required',  
+        ];
+
+        $validator = Validator::make($data, $rules);
+
+        if ($validator->fails())
+        {
+            // It failed
+            Redirect::back()->withErrors($validator->messages())->withInput();
+        }
+        else{
+            return 'correcto';
+        }
+       
+        $validator = Validator::make($request->all(), [
+            'phone' => 'required|numeric',
+            'name' => 'required|string',
             'direccion' => 'required',
             'descripcion' => 'required',     
         ]);
@@ -52,7 +97,7 @@ class ContactoController extends Controller
         else{
             return 'correcto';
         }
-
+    */
     }
 
     /**

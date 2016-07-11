@@ -13,9 +13,9 @@ class CreateParroquiasTable extends Migration
     public function up()
     {
         Schema::create('parroquias', function(Blueprint $table) {
-            $table->increments('id');
+            $table->increments('id')->unsigned();
             $table->string('nombre', 60);
-            $table->integer('municipio_id');
+            $table->integer('municipio_id')->unsigned();
         });
     }
 

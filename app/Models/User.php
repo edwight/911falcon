@@ -11,6 +11,8 @@ class User extends Authenticatable
      *
      * @var array
      */
+    protected $guarded = ['id', 'password'];
+
     protected $fillable = [
         'name', 'email', 'password',
     ];
@@ -23,4 +25,9 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function contactos()
+    {
+        return $this->hasMany('App\Models\Contacto');
+    }
 }

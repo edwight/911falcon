@@ -14,8 +14,9 @@ class CreateMotivosTable extends Migration
     {
         Schema::create('motivos', function(Blueprint $table)
         {
-             $table->increments('id');
+             $table->increments('id')->unsigned();
              $table->string('motivo')->unique();
+             $table->string('descripcion');
         });
     }
 

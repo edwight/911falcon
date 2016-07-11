@@ -14,7 +14,10 @@ class UserController extends Controller
 		$user = User::all();
 		//mostrar la lista de post
 		//$tags = Tag::all();
-		return View('admin.user.index', compact('user'));
+		foreach($user as $users) {
+			print($users->id);
+		}
+		//return View('admin.user.index', compact('user'));
 	}
 	public function create()
 	{
