@@ -19,13 +19,16 @@ Route::controllers([
 */
 
 Route::resource('recepcion', 'Operadores\RecepcionController');
+Route::resource('despacho', 'Despachadores\DespachadoresController');
 //Route::get('/', 'Operadores\RecepcionController@recepcion');
 
 Route::group(
     array('prefix' => 'admin', 'middleware' => 'auth'), 
     function() {
+    	Route::resource('grupos', 'Admin\GruposController');
         Route::resource('users', 'Admin\UsersController');
-        Route::resource('motivos', ' Admin\RecepcionController');
+        
+        //Route::resource('motivos', ' Admin\RecepcionController');
     }
 );
 
@@ -42,3 +45,7 @@ Route::group(
 
 //Route::get('/home', 'HomeController@index');
 
+
+Route::auth();
+
+Route::get('/home', 'HomeController@index');

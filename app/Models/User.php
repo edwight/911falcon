@@ -30,4 +30,8 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Models\Contacto');
     }
+    public function grupo()
+    {
+        return $this->belongsTo('App\Models\Grupo');
+    }
 }

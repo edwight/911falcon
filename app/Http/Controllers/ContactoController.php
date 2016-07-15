@@ -39,8 +39,7 @@ class ContactoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+    
        // return $request->all();
         $phone = $request->input('phone');//required
         $name = $request->input('name');

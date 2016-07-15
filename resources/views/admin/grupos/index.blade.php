@@ -33,25 +33,15 @@
 				      <thead>
 				        <tr>
 				          <th>#</th>
-				          <th>Nombre</th>
-				          <th>Correo</th>
-				          <th>Tipo</th>
-				          <th>Acciones</th>
+				          <th>grupos</th>
 				        </tr>
 				      </thead>
 				      <tbody>
-						@foreach($user as $users)
+						@foreach($grupos as $grupo)
 					        <tr>
-					          <th scope="row">{{ $users->id}}</th>
-					          <td>{{ $users->name }}</td>
-					          <td>{{ $users->email }}</td>
-					 		  <td>{{ $users->roles }}</td>
-							  <td><a href="{{ URL::to('admin/users/'.$users->id. '/edit') }}">
-							  <button type="button" class="btn btn-primary">Editar</button></a>
-					          | {!!  Form::open(['url'=>'admin/users/'.$users->id]) !!}
-	                    		{!! Form::hidden('_method', 'DELETE') !!}
-	                    		{!! Form::submit('Eliminar', ['class' => 'btn btn-danger']) !!}
-	                			{!! Form::close() !!}</td>
+					          <th scope="row">
+					          {{ $grupo->id}}</th>
+					          <td>{{ $grupo->name }}</td>
 					        </tr>
 				     	@endforeach
 				     

@@ -7,7 +7,10 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Models\Contacto;
 use App\Models\User;
+use App\Models\Motivo;
+use App\Models\Direccion;
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 
 class RecepcionController extends Controller
 {
@@ -19,8 +22,7 @@ class RecepcionController extends Controller
     public function index()
     {
         //$contactos = Contacto::all();
-        $user = User::findOrFail(1);
-        return view('operadores.index', compact('user'));
+       
     }
 
     /**
@@ -34,6 +36,9 @@ class RecepcionController extends Controller
         //return $user->id;
         //$categorylist = Category::all();
         //return view('admin.contacto.create', compact('user'));
+
+        $user = User::findOrFail(1);
+        return view('operadores.create', compact('user'));
     }
 
     /**
@@ -45,33 +50,77 @@ class RecepcionController extends Controller
     public function store(Request $request)
     {
 
+        $this->validate($request, [
+            'telefono' => 'required|max:25',
+            'nombre' => 'required',
+            'cedula' => 'required',
+            'direccion' => 'required',
+            ]);
+
        //return $request->all();
+
         $phone = $request->input('telefono');//required
-        $name = $request->input('nombre');
+        $nombre = $request->input('nombre');
+        $cedula = $request->input('cedula');
+        $apellido = $request->input('apellido');
+
         $user = $request->input('user_id');//required
         $motivos = $request->input('motivos');//required
         $municipio = $request->input('municipio');
         $parroquia =  $request->input('parroquia');
-        $direccion = $request->input('direccion');//required
+        $ubicacion = $request->input('direccion');//required
         $p_referencia = $request->input('p_referencia');
-        $descripcion = $request->input('descripcion"');
+        $descripcion = $request->input('descripcion');
         $organismo = $request->input('organismo');//required
 
-        $descripcion = $request->input('nombrec');//required
-        $descripcion = $request->input('phonec');//required
+        $date = Carbon::now(); //2015-01-01 00:00:00
+        $duracion = $request->input('diraccion');
 
-        //return 'telefono: '.$phone. ' nombre:'.$name.' usuario: '.$user.' municipio: '.$municipio.' parroquia: '.$parroquia.' direccion: '.$descripcion;
-        
+        return $duraccion;
+
         $contacto = New contacto;
-        $contacto->name = $name;
+        $contacto->nombre = $nombre;
+        $contacto->apellido = $apellido;
+        $contacto->cedula = $cedula;
         $contacto->phone = $phone;
         //$contacto->direccion = $direccion;
         $contacto->save();
-
+        
         $users = User::find($user);
 		$users->contactos()->save($contacto);
+        
+/*
+        $direccion = New Direccion;
+        $direccion->ubicacion = $ubicacion;
+        $direccion->preferencia = $p_referencia;
+        $direccion->save();
+*/
+        //return $motivos.' '.$descripcion;
+       /*
+       
+       
 
-        return redirect('contacto/');
+*/     $contacto = Contacto::find(1);
+       $motivo=['1','2','5'];
+            if (isset($motivo)) 
+            {
+                foreach ($motivo as $tagId) 
+                {
+                    $motivo = Motivo::find($tagId);
+                    $contacto->motivos()->attach($motivo);
+                }
+            }
+
+        //$motivo = New Motivo;
+        //$motivo->motivo = '$motivos';
+        //$motivo->descripcion = '$descripcion';
+        //$motivo->save();
+
+        //$contacto->motivos()->attach($motivos);
+        //$direccion->motivos->attach($direccion);
+        //$contacto->direcciones()->save($direcciones);
+
+        return redirect('recepcion/create');
          /*
         $rules = [
             'phone' => 'required|numeric',

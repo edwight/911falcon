@@ -1,6 +1,6 @@
 @extends('base')
 
-@section('adminUser')
+@section('adminModule')
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
@@ -41,18 +41,13 @@
 				        </tr>
 				      </thead>
 				      <tbody>
-						@foreach($user as $users)
+						@foreach($contacto as $contactos)
 					        <tr>
-					          <th scope="row">{{ $users->id}}</th>
-					          <td>{{ $users->name }}</td>
-					          <td>{{ $users->email }}</td>
-					 		  <td>{{ $users->roles }}</td>
-							  <td><a href="{{ URL::to('admin/users/'.$users->id. '/edit') }}">
-							  <button type="button" class="btn btn-primary">Editar</button></a>
-					          | {!!  Form::open(['url'=>'admin/users/'.$users->id]) !!}
-	                    		{!! Form::hidden('_method', 'DELETE') !!}
-	                    		{!! Form::submit('Eliminar', ['class' => 'btn btn-danger']) !!}
-	                			{!! Form::close() !!}</td>
+					          <th scope="row">{{ $contactos->id}}</th>
+					          <td>{{ $contactos->phone }}</td>
+					          <td>{{ $contactos->nombre }}</td>
+					          <td>{{ $contactos->cedula }}</td>
+					 		  <td>{{ $contactos->status }}</td>
 					        </tr>
 				     	@endforeach
 				     

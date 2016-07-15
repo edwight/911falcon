@@ -64,6 +64,7 @@
 
 	@yield('recepcion')
 	@yield('adminUser')
+	@yield('adminModule')
 
 	<!-- Scripts -->
 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
@@ -72,6 +73,12 @@
   <!--[if lt IE 9]>
     <script src="js/editor/froala_editor_ie8.min.js"></script>
   <![endif]-->
+
+  <script type="text/javascript" src="{{ asset('/js/temporizador/res/demo.js') }}"></script>
+  
+  <script type="text/javascript" src="{{ asset('/js/temporizador/res/time.js') }}"></script>
+
+   
 
   <script type="text/javascript" src="{{ asset('/js/editor/plugins/tables.min.js') }}"></script>
   <script type="text/javascript" src="{{ asset('/js/editor/plugins/lists.min.js') }}"></script>

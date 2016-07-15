@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateMotivosTable extends Migration
+class CreateLocalidadTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,11 +12,10 @@ class CreateMotivosTable extends Migration
      */
     public function up()
     {
-        Schema::create('motivos', function(Blueprint $table)
-        {
-             $table->increments('id')->unsigned();
-             $table->string('motivo')->unique();
-             $table->string('descripcion');
+        Schema::create('localidad', function(Blueprint $table){
+            $table->Increments('id')->unsigned();
+            $table->string('nombre', 60);
+            $table->integer('parroquia_id')->unsigned();
         });
     }
 
@@ -27,6 +26,6 @@ class CreateMotivosTable extends Migration
      */
     public function down()
     {
-        Schema::drop('motivos');
+        Schema::drop('localidad');
     }
 }

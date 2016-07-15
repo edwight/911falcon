@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateParroquiasTable extends Migration
+class CreateMotivosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,10 +12,12 @@ class CreateParroquiasTable extends Migration
      */
     public function up()
     {
-        Schema::create('parroquias', function(Blueprint $table){
+        Schema::create('motivos',function(Blueprint $table){
             $table->Increments('id')->unsigned();
-            $table->string('nombre', 60);
-            $table->integer('municipio_id')->unsigned();
+            $table->string('motivo', 60)->unique();
+            $table->text('descripcion');
+            $table->Integer('organismo_id')->unsigned();
+            
         });
     }
 
@@ -26,6 +28,6 @@ class CreateParroquiasTable extends Migration
      */
     public function down()
     {
-        Schema::drop('parroquias');
+        Schema::drop('motivos');
     }
 }

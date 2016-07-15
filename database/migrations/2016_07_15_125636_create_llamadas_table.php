@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateParroquiasTable extends Migration
+class CreateLlamadasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,10 +12,13 @@ class CreateParroquiasTable extends Migration
      */
     public function up()
     {
-        Schema::create('parroquias', function(Blueprint $table){
+         Schema::create('llamadas',function(Blueprint $table){
             $table->Increments('id')->unsigned();
-            $table->string('nombre', 60);
-            $table->integer('municipio_id')->unsigned();
+            $table->integer('falsas')->nullable();
+            $table->integer('quejas')->nullable();
+            $table->integer('registradas')->nullable();
+            $table->text('descripcion');
+            
         });
     }
 
@@ -26,6 +29,6 @@ class CreateParroquiasTable extends Migration
      */
     public function down()
     {
-        Schema::drop('parroquias');
+        Schema::drop('llamadas');
     }
 }

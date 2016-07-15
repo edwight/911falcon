@@ -1,6 +1,6 @@
 @extends('base')
 
-@section('adminModule')
+@section('adminUser')
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
@@ -17,7 +17,7 @@
                             </ul>
                         </div>
                     @endif
-                     {!! Form::open(['action'=>'Admin\UsersController@store','class'=>'form-horizontal','role'=>'form', 'files' => true]) !!}
+                    {!! Form::open(['url' => 'admin/user','class'=>'form-horizontal','role'=>'form', 'files' => true]) !!}
                         <div class="form-group">
                             {!! Form::label('nombre', 'Nombre', ['class' => 'col-md-4 control-label']) !!}
                             <div class="col-md-6">
@@ -26,9 +26,9 @@
                         </div>
 
                         <div class="form-group">
-                            {!! Form::label('cedula', 'Cedula', array('class' => 'col-md-4 control-label')) !!}
+                            {!! Form::label('email', 'Correo Eletronico', array('class' => 'col-md-4 control-label')) !!}
                             <div class="col-md-6">
-                                {!! Form::text('cedula',null,['class'=>'form-control','name'=>'cedula'] ) !!}
+                                {!! Form::text('email',null,['class'=>'form-control','name'=>'email'] ) !!}
                             </div>
                         </div>
 
@@ -46,23 +46,13 @@
                                 <input type="password" class="form-control" name="password_confirmation">
                             </div>
                         </div>
-                        <div class="form-group">
-                            {!! Form::label('telefono', 'Telefono', ['class' => 'col-md-4 control-label']) !!}
+
+                        <div class="form-group has-warning">
+                            <label class="col-md-4 control-label">descripcion</label>
                             <div class="col-md-6">
-                                {!! Form::text('telefono', null,['class'=>'form-control','name'=>'telefono'] ) !!}
+                                {!! Form::textarea('descripcion',null,['class'=>'form-control','name'=>'descripcion','id'=>'inputWarning2', 'aria-describedby'=>'inputWarning2Status']) !!}
                             </div>
                         </div>
-                        <div class="form-group">
-                         {{Form::label('grupos', 'Grupos', ['class' => 'col-md-4 control-label'])}}
-                        <div class="col-md-6 ">
-                            <select data-placeholder="Selecione una Categoria..." name="grupos" class="form-control"  tabindex="2" id="grupos">
-                            <option value=""></option>
-                            @foreach ($grupolist as $grupo)
-                                <option value="{{ $grupo->id }}">{{ $grupo->name }}</option>
-                            @endforeach
-                            </select>
-                        </div>
-                    </div>
 
                         <div class="form-group has-warning">
                             {!! Form::label('photo', 'Foto', ['class' => 'col-md-4 control-label','for'=>'inputWarning1']) !!}
@@ -74,7 +64,7 @@
                         <div class="form-group">
                             {!! Form::label('type', 'Tipo de usuario', ['class' => 'col-md-4 control-label']) !!}
                             <div class="col-md-6">
-                                {!! Form::select('type',[''=>'selecione tipo','Supervisor'=>'supervisor','Operador'=>'operador','despachador'=>'Despachador','admin'=>'Administrador'], null,['class'=>'form-control']) !!}
+                                {!! Form::select('type',[''=>'selecione tipo','admin'=>'Administrador','editor'=>'Editor','user'=>'Usuarios'], null,['class'=>'form-control']) !!}
                             </div>
                         </div>
 

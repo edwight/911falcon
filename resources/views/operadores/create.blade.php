@@ -18,7 +18,15 @@
                             </div>
                         @endif
                         {!! Form::open(['action' =>'Operadores\RecepcionController@store','class'=>'form-horizontal','role'=>'form']) !!}
-                            <div class="form-group">
+
+                        <div class="form-group">
+                            {!!Form::label('duraccion', 'Duraccion', array('class' => 'col-md-2 control-label')) !!}
+                            <div class="col-md-10">
+                                {!! Form::text('duraccion', null,['class'=>'form-control','name'=>'duraccion','placeholder'=>'Duraccion'] ) !!}
+                            </div>
+                        </div>
+
+                        <div class="form-group">
                             {!!Form::label('telefono', 'Telefono', array('class' => 'col-md-2 control-label')) !!}
                             <div class="col-md-10">
                                 {!! Form::text('telefono', null,['class'=>'form-control','name'=>'telefono','placeholder'=>'telefono'] ) !!}
@@ -93,6 +101,7 @@
                             </div>
                         </div>
                         {!! Form::hidden('user_id', $user->id) !!}
+                        {!! Form::hidden('contacto_status', 'false') !!}
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-6">
                                 {!! Form::submit('Save', ['name' => 'submit','class'=>'btn btn-primary']) !!}

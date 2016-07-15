@@ -12,4 +12,11 @@ class Contacto extends Model
         return $this->belongsTo('App\Models\User');
     }
 
+    public function motivos(){
+        return $this->belongsToMany('App\Models\Motivo','contacto_direccion_motivo');
+    }
+    public function direcciones(){
+        return $this->belongsToMany('\App\Models\Direccion');
+    }
+
 }

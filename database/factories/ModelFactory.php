@@ -12,12 +12,13 @@
 */
 
 $factory->define(App\Models\User::class, function(Faker\Generator $faker) {
+    $entrada = array();
     return [
         'name' => $faker->name,
         'email' => $faker->safeEmail,
         'slug' => $faker->slug,
         'phone' => $faker->phoneNumber,   
-        'roles' => 'operador',               
+        'roles' => "operador",              
         'password' => bcrypt(str_random(10)),
         'remember_token' => str_random(10),
     ];
@@ -25,7 +26,12 @@ $factory->define(App\Models\User::class, function(Faker\Generator $faker) {
 
 $factory->define(App\Models\Contacto::class, function (Faker\Generator $faker) {
     return [
-        'name' => $faker->name,
+        'nombre' => $faker->name,
+        'apellido' => $faker->name,
+        'cedula' => $faker->creditCardNumber,
+        'status' => false,
+        'type' => '171',
+        'fecha' =>$faker->date($format = 'Y-m-d', $max = 'now'),
         'phone' => $faker->phoneNumber,  
         //'descripcion' =>$faker->text,
     ];

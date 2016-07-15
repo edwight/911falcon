@@ -13,7 +13,7 @@ class CreateOrganismosTable extends Migration
     public function up()
     {
         Schema::create('organismos', function(Blueprint $table){
-            $table->increments('id')->unsigned();
+            $table->Increments('id')->unsigned();
             $table->string('siglas', 60);
             $table->string('nombre', 120);
             $table->string('telefono', 60);
