@@ -17,6 +17,7 @@ class CreateOrganismosTable extends Migration
             $table->string('siglas', 60);
             $table->string('nombre', 120);
             $table->string('telefono', 60);
+            $table->timestamps();
         });
     }
     /**

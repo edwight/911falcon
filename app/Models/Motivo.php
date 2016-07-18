@@ -19,12 +19,9 @@ class Motivo extends Model
         return $this->value;
     }
 
-    public function contactos(){
-   		return $this->belongsToMany('App\Models\Contacto','contacto_direccion_motivo'); 
-   	}
- 
-   	public function direcciones(){
-    	return $this->belongsToMany('App\Models\Direccion');
-    	}
+    public function organismos()
+    {
+        return $this->belongsTo('App\Models\Organismo');
+    }
 
 }

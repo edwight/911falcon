@@ -9,10 +9,11 @@ class Direccion extends Model
 	protected $table = 'direcciones';
 	public $timestamps = false;
 
-  	public function motivos(){
-        return $this->belongsToMany('App\Models\Motivo');
+    public function contactos(){
+         return $this->hasMany('App\Models\Contacto');
     }
-    public function direcciones(){
-        return $this->belongsToMany('App\Models\Direccion'); 
+    public function parroquias(){
+         return $this->belongsTo('App\Models\Parroquia');
     }
+
 }

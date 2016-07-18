@@ -17,8 +17,8 @@ class ContactoController extends Controller
      */
     public function index()
     {
-
-        return view('admin.contacto.index');
+        $contacto = Contacto::all(); 
+        return view('admin.contacto.index',compact('contacto'));
     }
 
     /**

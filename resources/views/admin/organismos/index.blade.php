@@ -19,7 +19,7 @@
                     @endif
                     <div class="form-group">
                         <div class="col-md-6">
-                        	<a href="/admin/users/create"><button type="button" class="btn btn-primary">Nuevo Usuario</button></a>
+                        	<a href="/admin/organismos/create"><button type="button" class="btn btn-primary">Nuevo Organismos</button></a>
                         </div>
                     </div>
                     <div class="row">
@@ -33,22 +33,25 @@
 				      <thead>
 				        <tr>
 				          <th>#</th>
-				          <th>telefono</th>
-				          <th>Descripcion</th>
-				          <th>Direccion</th>
-				          <th>Organismo</th>
-				          <th>Operador</th>
+				          <th>Nombre</th>
+				          <th>Siglas</th>
+				          <th>Telefono</th>
+				          <th>Acciones</th>
 				        </tr>
 				      </thead>
 				      <tbody>
-						@foreach($contacto as $contactos)
+						@foreach($organismo as $organismos)
 					        <tr>
-					          <th scope="row">{{ $contactos->id}}</th>
-					          <td>{{ $contactos->telefono }}</td>
-					          <td>{{ $contactos->nombre }}</td>
-					          <td>{{ $contactos->apellido }}</td>
-					          <td>{{ $contactos->cedula }}</td>
-					 		  <td>{{ $contactos->user->name }}</td>
+					          <th scope="row">{{ $organismos->id}}</th>
+					          <td>{{ $organismos->nombre }}</td>
+					          <td>{{ $organismos->siglas }}</td>
+					 		  <td>{{ $organismos->telefono }}</td>
+							  <td><a href="{{ URL::to('admin/organismos/'.$organismos->id. '/edit') }}">
+							  <button type="button" class="btn btn-primary">Editar</button></a>
+					          | {!!  Form::open(['url'=>'admin/organismos/'.$organismos->id]) !!}
+	                    		{!! Form::hidden('_method', 'DELETE') !!}
+	                    		{!! Form::submit('Eliminar', ['class' => 'btn btn-danger']) !!}
+	                			{!! Form::close() !!}</td>
 					        </tr>
 				     	@endforeach
 				     

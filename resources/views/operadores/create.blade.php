@@ -29,7 +29,7 @@
                         <div class="form-group">
                             {!!Form::label('telefono', 'Telefono', array('class' => 'col-md-2 control-label')) !!}
                             <div class="col-md-10">
-                                {!! Form::text('telefono', null,['class'=>'form-control','name'=>'telefono','placeholder'=>'telefono'] ) !!}
+                                {!! Form::number('telefono', null,['class'=>'form-control','name'=>'telefono','placeholder'=>'telefono'] ) !!}
                             </div>
                         </div>
 
@@ -50,14 +50,19 @@
                         <div class="form-group">
                             {!! Form::label('cedula', 'cedula', array('class' => 'col-md-2 control-label')) !!}
                             <div class="col-md-10">
-                                {!! Form::text('cedula', null,['class'=>'form-control','name'=>'cedula','placeholder'=>'Cedula'] ) !!}
+                                {!! Form::number('cedula', null,['class'=>'form-control','name'=>'cedula','placeholder'=>'Cedula'] ) !!}
                             </div>
                         </div>
 
                         <div class="form-group">
-                            {!! Form::label('municipio', 'Municipio', array('class' => 'col-md-2 control-label')) !!}
-                            <div class="col-md-10">
-                                {!! Form::text('municipio', null,['class'=>'form-control','name'=>'municipio','placeholder'=>'Municipio'] ) !!}
+                             {{Form::label('municipio', 'Municipio', ['class' => 'col-md-2 control-label'])}}
+                            <div class="col-md-10 ">
+                                <select data-placeholder="Selecione una Categoria..." name="municipio" class="form-control"  tabindex="2" id="municipios">
+                                <option value=""></option>
+                                @foreach ($municipio as $municipios)
+                                    <option value="{{ $municipios->id }}">{{ $municipios->municipio }}</option>
+                                @endforeach
+                                </select>
                             </div>
                         </div>
 
@@ -94,17 +99,27 @@
                                 {!! Form::textarea('p_referencia', null,['class'=>'edit','name'=>'p_referencia'] ) !!}
                             </div>
                         </div>
-                        <div class="form-group">
-                            {!! Form::label('organismos', 'Organismos', ['class' => 'col-md-2 control-label']) !!}
+                         <div class="form-group">
+                             {{Form::label('organismo', 'Organismo', ['class' => 'col-md-2 control-label'])}}
                             <div class="col-md-10 ">
-                                {!! Form::checkbox('siipoll', 1) !!}
+                                <select data-placeholder="Selecione una Categoria..." name="organismo" class="form-control"  tabindex="2" id="organismo">
+                                <option value=""></option>
+                                @foreach ($organismo as $organismos)
+                                    <option value="{{ $organismos->id }}">{{ $organismos->siglas }}</option>
+                                @endforeach
+                                </select>
                             </div>
                         </div>
                         {!! Form::hidden('user_id', $user->id) !!}
-                        {!! Form::hidden('contacto_status', 'false') !!}
+                       
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-6">
                                 {!! Form::submit('Save', ['name' => 'submit','class'=>'btn btn-primary']) !!}
+                            </div>
+                        </div>
+                         <div class="form-group">
+                            <div class="col-md-6 col-md-offset-6">
+                                {!! Form::submit('Save', ['name' => 'submit','class'=>'btn btn-danger','value'=>'2']) !!}
                             </div>
                         </div>
                         {!! Form::close() !!}

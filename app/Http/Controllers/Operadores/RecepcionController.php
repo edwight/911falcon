@@ -7,7 +7,10 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Models\Contacto;
 use App\Models\User;
+use App\Models\Estado;
+use App\Models\Organismo;
 use App\Models\Motivo;
+use App\Models\Municipio;
 use App\Models\Direccion;
 use App\Http\Controllers\Controller;
 use Carbon\Carbon;
@@ -22,7 +25,7 @@ class RecepcionController extends Controller
     public function index()
     {
         //$contactos = Contacto::all();
-       
+       //return view('operadores.index', compact('user'));
     }
 
     /**
@@ -38,7 +41,9 @@ class RecepcionController extends Controller
         //return view('admin.contacto.create', compact('user'));
 
         $user = User::findOrFail(1);
-        return view('operadores.create', compact('user'));
+        $municipio = Municipio::all();
+        $organismo = Organismo::all();
+        return view('operadores.create', compact('user','municipio','organismo'));
     }
 
     /**
@@ -50,10 +55,12 @@ class RecepcionController extends Controller
     public function store(Request $request)
     {
 
+        return $request->all();
         $this->validate($request, [
             'telefono' => 'required|max:25',
             'nombre' => 'required',
             'cedula' => 'required',
+            'motivos' => 'required',
             'direccion' => 'required',
             ]);
 
@@ -74,20 +81,48 @@ class RecepcionController extends Controller
         $organismo = $request->input('organismo');//required
 
         $date = Carbon::now(); //2015-01-01 00:00:00
-        $duracion = $request->input('diraccion');
-
-        return $duraccion;
+        $duracion = $request->input('duraccion');
 
         $contacto = New contacto;
         $contacto->nombre = $nombre;
         $contacto->apellido = $apellido;
         $contacto->cedula = $cedula;
-        $contacto->phone = $phone;
+        $contacto->telefono = $phone;
+        $contacto->status = 'false';
+        $contacto->type = '171';
+        $contacto->fecha_at = $date;
         //$contacto->direccion = $direccion;
+
         $contacto->save();
         
         $users = User::find($user);
 		$users->contactos()->save($contacto);
+
+        //$estado = Estado::find($estado);
+
+        
+        $municipios = Municipio::find($municipio);
+        $municipios->contactos()->save($contacto);
+
+        $direccion = New Direccion;
+        $direccion->ubicacion = $ubicacion;
+        $direccion->preferencia = $p_referencia;
+        $direccion->save();
+        $direccion->contactos()->save($contacto);
+        
+        $organismo = Organismo::find($organismo);
+        $organismo->contactos()->save($contactos);
+
+        
+
+
+/*
+        $llamadas = New Llamada;
+        $llamadas->descripcion = $descripcion;
+        $llamadas->quejas = '25';
+        $llamadas->falsas = '25';
+        $llamadas->registradas = '25';
+        $llamadas->contactos()->save($contacto)
         
 /*
         $direccion = New Direccion;
@@ -100,17 +135,7 @@ class RecepcionController extends Controller
        
        
 
-*/     $contacto = Contacto::find(1);
-       $motivo=['1','2','5'];
-            if (isset($motivo)) 
-            {
-                foreach ($motivo as $tagId) 
-                {
-                    $motivo = Motivo::find($tagId);
-                    $contacto->motivos()->attach($motivo);
-                }
-            }
-
+*/     
         //$motivo = New Motivo;
         //$motivo->motivo = '$motivos';
         //$motivo->descripcion = '$descripcion';

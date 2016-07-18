@@ -11,9 +11,13 @@ class DespachadoresController extends Controller
 {
     public function index()
     {
-    	$Contacto = Contacto::all(); 
-    	
-        return view('despachadores.index');
+    	$contacto = Contacto::all();
+        /*
+        foreach ($contacto as $contactos) {
+            print($contactos->id);
+        }
+        */
+        return view('despachadores.index',compact('contacto'));
     }
     public function create()
     {
