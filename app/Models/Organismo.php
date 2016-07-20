@@ -12,4 +12,8 @@ class Organismo extends Model
     {
         return $this->hasMany('App\Models\Motivo');
     }
+    public function contactos()
+    {
+        return $this->hasMany('App\Models\Contacto');
+    }
 }

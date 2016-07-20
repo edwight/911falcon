@@ -11,17 +11,17 @@ class Motivo extends Model
 
 	public function __toString()
     {
-        return $this->value;
+      return $this->value;
     }
     
     public function toString()
     {
-        return $this->value;
+      return $this->value;
     }
 
     public function organismos()
     {
-        return $this->belongsTo('App\Models\Organismo');
+      return $this->belongsTo('App\Models\Organismo');
     }
 
 }

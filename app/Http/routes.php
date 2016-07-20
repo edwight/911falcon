@@ -20,6 +20,7 @@ Route::controllers([
 
 Route::resource('recepcion', 'Operadores\RecepcionController');
 Route::resource('despacho', 'Despachadores\DespachadoresController');
+Route::get('estadisticas', 'Estadisticas\EstadisticasController@fecha');
 //Route::get('/', 'Operadores\RecepcionController@recepcion');
 
 Route::group(

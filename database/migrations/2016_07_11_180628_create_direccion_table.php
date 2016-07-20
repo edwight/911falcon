@@ -14,10 +14,11 @@ class CreateDireccionTable extends Migration
     {
         Schema::create('direcciones',function(Blueprint $table){
             $table->Increments('id')->unsigned();
+            $table->text('despcricion');
             $table->text('ubicacion');
             $table->text('preferencia');
-            $table->text('parroquia_id');
-            $table->text('localidad_id');
+            $table->integer('parroquia_id');
+            $table->integer('localidad_id');
         });
     }
 

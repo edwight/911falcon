@@ -15,6 +15,7 @@ class DespachadoresController extends Controller
         /*
         foreach ($contacto as $contactos) {
             print($contactos->id);
+            print($contactos->organismo->siglas);
         }
         */
         return view('despachadores.index',compact('contacto'));

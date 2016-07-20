@@ -34,8 +34,8 @@
 				        <tr>
 				          <th>#</th>
 				          <th>telefono</th>
-				          <th>Descripcion</th>
-				          <th>Direccion</th>
+				          <th>Nombre</th>
+				          <th>Cedula</th>
 				          <th>Organismo</th>
 				          <th>Operador</th>
 				        </tr>
@@ -43,11 +43,11 @@
 				      <tbody>
 						@foreach($contacto as $contactos)
 					        <tr>
-					          <th scope="row">{{ $contactos->id}}</th>
+					          <th scope="row"><a href=".">{{ $contactos->id}}</a></th>
 					          <td>{{ $contactos->telefono }}</td>
 					          <td>{{ $contactos->nombre }}</td>
-					          <td>{{ $contactos->apellido }}</td>
 					          <td>{{ $contactos->cedula }}</td>
+					          <td>{{ $contactos->organismo->siglas }}</td>
 					 		  <td>{{ $contactos->user->name }}</td>
 					        </tr>
 				     	@endforeach

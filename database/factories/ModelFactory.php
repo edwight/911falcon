@@ -1,5 +1,5 @@
 <?php
-
+use Carbon\Carbon;
 /*
 |--------------------------------------------------------------------------
 | Model Factories
@@ -31,8 +31,8 @@ $factory->define(App\Models\Contacto::class, function (Faker\Generator $faker) {
         'cedula' => $faker->creditCardNumber,
         'status' => false,
         'type' => '171',
-        'fecha' =>$faker->date($format = 'Y-m-d', $max = 'now'),
-        'phone' => $faker->phoneNumber,  
+        'fecha_at' =>$faker->dateTimeThisYear($max = 'now'),  // DateTime('2011-02-27 20:52:14')
+        'telefono' => $faker->phoneNumber,  
         //'descripcion' =>$faker->text,
     ];
 });

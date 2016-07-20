@@ -55,7 +55,7 @@ class RecepcionController extends Controller
     public function store(Request $request)
     {
 
-        return $request->all();
+
         $this->validate($request, [
             'telefono' => 'required|max:25',
             'nombre' => 'required',
@@ -83,7 +83,7 @@ class RecepcionController extends Controller
         $date = Carbon::now(); //2015-01-01 00:00:00
         $duracion = $request->input('duraccion');
 
-        $contacto = New contacto;
+        $contacto = New Contacto;
         $contacto->nombre = $nombre;
         $contacto->apellido = $apellido;
         $contacto->cedula = $cedula;
@@ -111,8 +111,10 @@ class RecepcionController extends Controller
         $direccion->contactos()->save($contacto);
         
         $organismo = Organismo::find($organismo);
-        $organismo->contactos()->save($contactos);
+        //$organismo->contactos()->associate($contacto);
+        $organismo->contactos()->save($contacto);
 
+        $motivos = New Motivo;
         
 
 

@@ -17,6 +17,7 @@ class CreateMotivosTable extends Migration
             $table->string('motivo', 60)->unique();
             $table->text('descripcion');
             $table->Integer('organismo_id')->unsigned();
+
             
         });
     }
