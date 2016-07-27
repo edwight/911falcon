@@ -1,7 +1,7 @@
-<?php
+ <?php
 
 use Illuminate\Database\Seeder;
-
+use App\Models\Estado;
 class EstadoTableSeeder extends Seeder
 {
     /**

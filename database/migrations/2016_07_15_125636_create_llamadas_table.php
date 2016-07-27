@@ -17,8 +17,8 @@ class CreateLlamadasTable extends Migration
             $table->integer('falsas')->nullable();
             $table->integer('quejas')->nullable();
             $table->integer('registradas')->nullable();
-            $table->text('descripcion');
-            
+            $table->timestamps();  
+            //$table->text('descripcion'); 
         });
     }
 

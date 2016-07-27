@@ -1,64 +1,129 @@
-@extends('base')
+@extends('layouts.master')
 
-@section('adminModule')
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Registar</div>
-                <div class="panel-body">
-                    @if (count($errors) > 0)
-                        <div class="alert alert-danger">
-                            <strong>Whoops!</strong> There were some problems with your input.<br><br>
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
-                    <div class="form-group">
-                        <div class="col-md-6">
-                        	<a href="/admin/users/create"><button type="button" class="btn btn-primary">Nuevo Usuario</button></a>
-                        </div>
-                    </div>
-                    <div class="row">
-					<div class="col-md-6">
+@section('content')
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        Data Tables
+        <small>advanced tables</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="#">Tables</a></li>
+        <li class="active">Data tables</li>
+      </ol>
+    </section>
 
-					<!-- busqueda de usuario -->
+    <!-- Main content -->
+    <section class="content">
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="box">
+            <div class="box-header">
+              <a href="{{ URL::to('admin/users/create') }}">
+						<button type="button" class="btn btn-primary">Crear Nuevo Usuario</button></a>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                	<th style="width: 10px">#</th>
+                  	<th>Nombre</th>
+                  	<th>Cedula</th>
+                  	<th>Tipo de Usuario</th>
+                  	<th>accion</th>
+                </tr>
+                </thead>
+                <tbody>
+                <style type="text/css">
+                	.label-operador
+                	{
+                		background-color: #00a65a !important;
+                	}
+                	.label-despacho
+                	{
+                		background-color: #3c8dbc !important;
+                	}
+                	.label-supervisor
+                	{
+                		background-color: #f39c12 !important;
+                	}
+                	.label-admin
+                	{
+                	    background-color: #dd4b39 !important;
+                	}
+                </style>
+               	@foreach($user as $users)
+					<tr>
+					  <th scope="row">{{ $users->id}}</th>
+			          <td>{{ $users->name }}</td>
+			          <td>{{ $users->email }}</td>
+			          <td><span class="label label-{{ $users->roles }}">{{ $users->roles }}</span></td>
 
-				  	</div><!-- /.col-lg-6 -->
-				  	</div><!-- /.row -->
-					<table class="table table-hover">
-				      <thead>
-				        <tr>
-				          <th>#</th>
-				          <th>Nombre</th>
-				          <th>Correo</th>
-				          <th>Tipo</th>
-				          <th>Acciones</th>
-				        </tr>
-				      </thead>
-				      <tbody>
-						@foreach($user as $users)
-					        <tr>
-					          <th scope="row">{{ $users->id}}</th>
-					          <td>{{ $users->name }}</td>
-					          <td>{{ $users->email }}</td>
-					 		  <td>{{ $users->roles }}</td>
-							  <td><a href="{{ URL::to('admin/users/'.$users->id. '/edit') }}">
-							  <button type="button" class="btn btn-primary">Editar</button></a>
-					          | {!!  Form::open(['url'=>'admin/users/'.$users->id]) !!}
+			 		  <td><a href="{{ URL::to('admin/users/'.$users->id. '/edit') }}">
+						<button type="button" class="btn btn-primary">Editar</button></a>
+					    | {!!  Form::open(['url'=>'admin/users/'.$users->id]) !!}
 	                    		{!! Form::hidden('_method', 'DELETE') !!}
 	                    		{!! Form::submit('Eliminar', ['class' => 'btn btn-danger']) !!}
 	                			{!! Form::close() !!}</td>
-					        </tr>
-				     	@endforeach
-				     
-				    </table>
-				</div>
+					  </tr>
+					</tr>  
+				@endforeach
+                
+                </tbody>
+                <tfoot>
+                <tr>
+                  <th>Rendering engine</th>
+                  <th>Browser</th>
+                  <th>Platform(s)</th>
+                  <th>Engine version</th>
+                  <th>CSS grade</th>
+                </tr>
+                </tfoot>
+              </table>
             </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
         </div>
-    </div>
-</div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </section>
+    <!-- /.content -->
+  </div>
+@endsection
+
+@section('javascript')
+<!-- jQuery 2.2.3 -->
+<script src="plugins/jQuery/jquery-2.2.3.min.js"></script>
+<!-- Bootstrap 3.3.6 -->
+<script src="bootstrap/js/bootstrap.min.js"></script>
+<!-- DataTables -->
+<script src="plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="plugins/datatables/dataTables.bootstrap.min.js"></script>
+<!-- SlimScroll -->
+<script src="plugins/slimScroll/jquery.slimscroll.min.js"></script>
+<!-- FastClick -->
+<script src="plugins/fastclick/fastclick.js"></script>
+<!-- AdminLTE App -->
+<script src="dist/js/app.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="dist/js/demo.js"></script>
+<!-- page script -->
+<script>
+  $(function () {
+    $("#example1").DataTable();
+    $('#example2').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false
+    });
+  });
+</script>
 @endsection

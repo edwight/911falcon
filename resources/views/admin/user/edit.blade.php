@@ -1,4 +1,6 @@
-@section('base')
+@extends('base')
+
+@section('adminModule')
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
@@ -17,7 +19,7 @@
                     @endif
                     
                     {!! Form::model($user, array('route' => array('admin.users.update', $user->id))) !!}
-                        <div class="form-group">
+                         <div class="form-group">
                             {!! Form::label('nombre', 'Nombre', ['class' => 'col-md-4 control-label']) !!}
                             <div class="col-md-6">
                                 {!! Form::text('nombre', null,['class'=>'form-control','name'=>'nombre'] ) !!}
@@ -56,31 +58,34 @@
                         <div class="col-md-6 ">
                             <select data-placeholder="Selecione una Categoria..." name="grupos" class="form-control"  tabindex="2" id="grupos">
                             <option value=""></option>
-                            @foreach ($user->grupolist as $grupo)
+                            @foreach ($grupolist as $grupo)
                                 <option value="{{ $grupo->id }}">{{ $grupo->name }}</option>
                             @endforeach
                             </select>
                         </div>
                     </div>
-                    <div class="form-group has-warning">
-                        {!! Form::label('photo', 'Foto', ['class' => 'col-md-4 control-label','for'=>'inputWarning1']) !!}
-                        <div class="col-md-6 ">
-                            {!! Form::file('photo',['class'=>'btn btn-warning']) !!}
+
+                        <div class="form-group has-warning">
+                            {!! Form::label('photo', 'Foto', ['class' => 'col-md-4 control-label','for'=>'inputWarning1']) !!}
+                            <div class="col-md-6 ">
+                                {!! Form::file('photo',['class'=>'btn btn-warning']) !!}
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        {!! Form::label('type', 'Tipo de usuario', ['class' => 'col-md-4 control-label']) !!}
-                        <div class="col-md-6">
-                            {!! Form::select('type',[''=>'selecione tipo','Supervisor'=>'supervisor','Operador'=>'operador','despachador'=>'Despachador','admin'=>'Administrador'], null,['class'=>'form-control']) !!}
+
+                        <div class="form-group">
+                            {!! Form::label('type', 'Tipo de usuario', ['class' => 'col-md-4 control-label']) !!}
+                            <div class="col-md-6">
+                                {!! Form::select('type',[''=>'selecione tipo','Supervisor'=>'supervisor','Operador'=>'operador','despachador'=>'Despachador','admin'=>'Administrador'], null,['class'=>'form-control']) !!}
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-6 col-md-offset-4">
-                            <button type="submit" class="btn btn-primary">
-                                Registar
-                            </button>
+
+                        <div class="form-group">
+                            <div class="col-md-6 col-md-offset-4">
+                                <button type="submit" class="btn btn-primary">
+                                    Registar
+                                </button>
+                            </div>
                         </div>
-                    </div>
                      {!! Form::close() !!}
                 </div>
             </div>

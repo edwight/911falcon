@@ -24,8 +24,11 @@ class RecepcionController extends Controller
      */
     public function index()
     {
-        //$contactos = Contacto::all();
-       //return view('operadores.index', compact('user'));
+        /*
+        $contactos = Contacto::all();
+        $user = User::all(); 
+        return view('operadores.index', compact('contactos','user'));
+        */
     }
 
     /**
@@ -41,9 +44,12 @@ class RecepcionController extends Controller
         //return view('admin.contacto.create', compact('user'));
 
         $user = User::findOrFail(1);
-        $municipio = Municipio::all();
-        $organismo = Organismo::all();
-        return view('operadores.create', compact('user','municipio','organismo'));
+        $municipios = Municipio::all();
+        $organismos = Organismo::all();
+        $motivos = Motivo::all();
+        $estados = Estado::all();
+        return view('operadores.Advanced', compact('user','municipios','organismos','motivos','estados'));
+        //return view('operadores.create', compact('user','municipio','organismo'));
     }
 
     /**
@@ -79,6 +85,7 @@ class RecepcionController extends Controller
         $p_referencia = $request->input('p_referencia');
         $descripcion = $request->input('descripcion');
         $organismo = $request->input('organismo');//required
+        $estado = $request->input('estado');//required
 
         $date = Carbon::now(); //2015-01-01 00:00:00
         $duracion = $request->input('duraccion');
@@ -99,8 +106,13 @@ class RecepcionController extends Controller
 		$users->contactos()->save($contacto);
 
         //$estado = Estado::find($estado);
-
+        $organismo = Organismo::find($organismo);
+        //$organismo->contactos()->associate($contacto);
+        $organismo->contactos()->save($contacto);
         
+        $estados = Estado::find($estado);
+        $estados->contactos()->save($contacto);
+
         $municipios = Municipio::find($municipio);
         $municipios->contactos()->save($contacto);
 
@@ -110,11 +122,8 @@ class RecepcionController extends Controller
         $direccion->save();
         $direccion->contactos()->save($contacto);
         
-        $organismo = Organismo::find($organismo);
-        //$organismo->contactos()->associate($contacto);
-        $organismo->contactos()->save($contacto);
+        
 
-        $motivos = New Motivo;
         
 
 

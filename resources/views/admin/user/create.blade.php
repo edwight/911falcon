@@ -1,94 +1,112 @@
-@extends('base')
+@extends('layouts.master')
 
-@section('adminModule')
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Registar</div>
-                <div class="panel-body">
-                    @if (count($errors) > 0)
-                        <div class="alert alert-danger">
-                            <strong>Whoops!</strong> There were some problems with your input.<br><br>
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
-                     {!! Form::open(['action'=>'Admin\UsersController@store','class'=>'form-horizontal','role'=>'form', 'files' => true]) !!}
-                        <div class="form-group">
-                            {!! Form::label('nombre', 'Nombre', ['class' => 'col-md-4 control-label']) !!}
-                            <div class="col-md-6">
-                                {!! Form::text('nombre', null,['class'=>'form-control','name'=>'nombre'] ) !!}
-                            </div>
-                        </div>
+@section('content')
+    <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        Advanced Form Elements
+        <small>Preview</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="#">Forms</a></li>
+        <li class="active">Advanced Elements</li>
+      </ol>
+    </section>
 
-                        <div class="form-group">
-                            {!! Form::label('cedula', 'Cedula', array('class' => 'col-md-4 control-label')) !!}
-                            <div class="col-md-6">
-                                {!! Form::text('cedula',null,['class'=>'form-control','name'=>'cedula'] ) !!}
-                            </div>
-                        </div>
+    <!-- Main content -->
+    <section class="content">
 
-                        <div class="form-group">
-                            {!! Form::label('password', 'Password', ['class' => 'col-md-4 control-label']) !!}
-                            <div class="col-md-6">
-                                {!! Form::password('password', ['class'=>'form-control','name'=>'password'] ) !!}
-                                
-                            </div>
-                        </div>
+      <!-- SELECT2 EXAMPLE -->
+      <div class="box box-default">
+        <div class="box-header with-border">
+          <h3 class="box-title">Select2</h3>
 
-                        <div class="form-group">
-                            <label class="col-md-4 control-label">Confirm Password</label>
-                            <div class="col-md-6">
-                                <input type="password" class="form-control" name="password_confirmation">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            {!! Form::label('telefono', 'Telefono', ['class' => 'col-md-4 control-label']) !!}
-                            <div class="col-md-6">
-                                {!! Form::text('telefono', null,['class'=>'form-control','name'=>'telefono'] ) !!}
-                            </div>
-                        </div>
-                        <div class="form-group">
-                         {{Form::label('grupos', 'Grupos', ['class' => 'col-md-4 control-label'])}}
-                        <div class="col-md-6 ">
-                            <select data-placeholder="Selecione una Categoria..." name="grupos" class="form-control"  tabindex="2" id="grupos">
-                            <option value=""></option>
-                            @foreach ($grupolist as $grupo)
-                                <option value="{{ $grupo->id }}">{{ $grupo->name }}</option>
+             <div class="panel-body">
+                @if (count($errors) > 0)
+                    <div class="alert alert-danger">
+                        <strong>Whoops!</strong> There were some problems with your input.<br><br>
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
                             @endforeach
-                            </select>
-                        </div>
+                        </ul>
                     </div>
-
-                        <div class="form-group has-warning">
-                            {!! Form::label('photo', 'Foto', ['class' => 'col-md-4 control-label','for'=>'inputWarning1']) !!}
-                            <div class="col-md-6 ">
-                                {!! Form::file('photo',['class'=>'btn btn-warning']) !!}
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            {!! Form::label('type', 'Tipo de usuario', ['class' => 'col-md-4 control-label']) !!}
-                            <div class="col-md-6">
-                                {!! Form::select('type',[''=>'selecione tipo','Supervisor'=>'supervisor','Operador'=>'operador','despachador'=>'Despachador','admin'=>'Administrador'], null,['class'=>'form-control']) !!}
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Registar
-                                </button>
-                            </div>
-                        </div>
-                     {!! Form::close() !!}
-                </div>
-            </div>
+                @endif
+              </div>
+          <div class="box-tools pull-right">
+            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+            <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i></button>
+          </div>
         </div>
-    </div>
-</div>
+        <!-- /.box-header -->
+        {!! Form::open(['action'=>'Admin\UsersController@store','class'=>'form-horizontal','role'=>'form', 'files' => true]) !!}
+          <div class="box-body">
+            <div class="row">
+              <div class="col-md-6">
+                 <div class="form-group">
+                    {!! Form::label('nombre', 'Nombre', array('for' => 'Inputphone')) !!}
+                    {!! Form::text('nombre', null,['class'=>'form-control','id'=>'Inputphone','name'=>'nombre','placeholder'=>'Nombre'] ) !!}
+                  </div>
+                <!-- /.form-group -->
+                  <div class="form-group">
+                    {!! Form::label('telefono', 'Telefono', array('for' => 'Inputname')) !!}
+                    {!! Form::text('telefono', null,['class'=>'form-control','id'=>'Inputname','name'=>'telefono','placeholder'=>'Telefono'] ) !!}
+                  </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+              <div class="col-md-6">
+                <div class="form-group">
+                    {!! Form::label('cedula', 'Cedula', array('for' => 'Inputdni')) !!}
+                    {!! Form::text('cedula', null,['class'=>'form-control','id'=>'Inputdni','name'=>'cedula','placeholder'=>'Cedula'] ) !!}
+                </div>
+                <!-- /.form-group -->
+                <div class="form-group">
+                  {!! Form::label('password', 'Password', array('for' => 'InputPassword')) !!}
+                  {!! Form::password('password'', null,['class'=>'form-control','id'=>'InputPassword','name'=>'password','placeholder'=>'Password'] ) !!}
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+              <div class="col-md-4">
+               <div class="form-group">
+                    <label for="DireccionInput">Grupo</label>
+                    <div class="col-md-6 ">
+                        <select class="form-control select2" name="motivos" style="width: 100%;">
+                        <option selected="selected"> </option>
+                          @foreach ($grupolist as $grupo)
+                             <option value="{{ $grupo->id }}">{{ $grupo->name }}</option>
+                          @endforeach
+                        </select>
+                    </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+              <div class="col-md-4">
+                <div class="form-group">
+                    <label for="DireccionInput">Tipo de Usuario</label>
+                    {!! Form::label('type', 'Tipo de usuario', ['class' => 'col-md-4 control-label']) !!}
+                    {!! Form::select('type',[''=>'selecione tipo','Supervisor'=>'supervisor','Operador'=>'operador','despachador'=>'Despachador','admin'=>'Administrador'], null,['class'=>'form-control']) !!}
+                 </div>
+                <!-- /.form-group -->
+            </div>
+            <!-- /.row -->
+          </div>
+        <!-- /.box-body -->
+        <div class="box-footer">
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </div>
+      </div>
+      <!-- /.box -->
+    {!! Form::close() !!}
+    </section>
+    <!-- /.content -->
+  </div>
 @endsection
+
+
+
+
+

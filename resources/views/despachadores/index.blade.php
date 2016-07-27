@@ -47,8 +47,8 @@
 					          <td>{{ $contactos->telefono }}</td>
 					          <td>{{ $contactos->nombre }}</td>
 					          <td>{{ $contactos->cedula }}</td>
-					          <td>{{ $contactos->organismo->siglas }}</td>
-					 		  <td>{{ $contactos->user->name }}</td>
+						      <td>{{ $contactos->organismo->siglas }}</td>
+						 	  <td>{{ $contactos->user->name }}</td>
 					        </tr>
 				     	@endforeach
 				     

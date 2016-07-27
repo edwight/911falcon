@@ -20,6 +20,7 @@ class CreateMunicipiosTable extends Migration
             $table->double('longitude');
             $table->integer('levelzoom');
             $table->integer('estado_id')->unsigned();
+            $table->integer('ubigeom_id')->unsigned();
         });
     }
 
