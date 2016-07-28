@@ -29,6 +29,7 @@ Route::group(
     	Route::resource('grupos', 'Admin\GruposController');
         Route::resource('users', 'Admin\UsersController');
         Route::resource('organismos', 'Admin\OrganismosController');
+        Route::resource('contactos', 'Admin\ContactosController');
         //Route::resource('motivos', ' Admin\RecepcionController');
     }
 );

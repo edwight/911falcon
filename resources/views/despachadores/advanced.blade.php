@@ -131,7 +131,7 @@
               <div class="col-md-6">
                 <div class="form-group">
                     <label for="DireccionInput">Motivos</label>
-                    <input type="text" class="form-control" placeholder="Enter ..." disabled="">
+                    <input type="text" class="form-control" placeholder="Enter ..." disabled="" value="{{ $contacto->motivo->motivo}}">
                 </div>
                 <!-- /.form-group -->
               </div>

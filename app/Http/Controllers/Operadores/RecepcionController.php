@@ -26,7 +26,7 @@ class RecepcionController extends Controller
     {
         /*
         $contactos = Contacto::all();
-        $user = User::all(); 
+        //$user = User::all(); 
         return view('operadores.index', compact('contactos','user'));
         */
     }
@@ -63,9 +63,9 @@ class RecepcionController extends Controller
 
 
         $this->validate($request, [
-            'telefono' => 'required|max:25',
+            'telefono' => 'required|max:25|unique:contactos',
             'nombre' => 'required',
-            'cedula' => 'required',
+            'cedula' => 'required|unique:contactos',
             'motivos' => 'required',
             'direccion' => 'required',
             ]);
@@ -78,7 +78,7 @@ class RecepcionController extends Controller
         $apellido = $request->input('apellido');
 
         $user = $request->input('user_id');//required
-        $motivos = $request->input('motivos');//required
+        $motivo = $request->input('motivos');//required
         $municipio = $request->input('municipio');
         $parroquia =  $request->input('parroquia');
         $ubicacion = $request->input('direccion');//required
@@ -115,6 +115,9 @@ class RecepcionController extends Controller
 
         $municipios = Municipio::find($municipio);
         $municipios->contactos()->save($contacto);
+
+        $motivos = Motivo::find($motivo);
+        $motivos->contactos()->save($contacto);
 
         $direccion = New Direccion;
         $direccion->ubicacion = $ubicacion;

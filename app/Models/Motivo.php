@@ -23,5 +23,10 @@ class Motivo extends Model
     {
       return $this->belongsTo('App\Models\Organismo');
     }
+    public function contactos()
+    {
+      return $this->hasMany('App\Models\Contacto');
+    }
+
 
 }

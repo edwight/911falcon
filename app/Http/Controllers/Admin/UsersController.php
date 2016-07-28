@@ -65,7 +65,8 @@ class UsersController extends Controller
 	public function edit($id)
 	{
 		$user = User::findOrFail($id);
-		return View('admin.user.edit', compact('user'));
+        $grupolist = Grupo::all();
+		return View('admin.user.edit', compact('user','grupolist'));
 	}
 	public function show($id)
 	{
