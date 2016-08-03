@@ -28,7 +28,7 @@ $factory->define(App\Models\Contacto::class, function (Faker\Generator $faker) {
     return [
         'nombre' => $faker->name,
         'apellido' => $faker->name,
-        'cedula' => $faker->creditCardNumber,
+        'email' => $faker->creditCardNumber,
         'status' => false,
         'type' => '171',
         'fecha_at' =>$faker->dateTimeThisYear($max = 'now'),  // DateTime('2011-02-27 20:52:14')

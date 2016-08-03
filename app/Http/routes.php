@@ -1,4 +1,6 @@
 <?php
+use Illuminate\Support\Facades\Auth;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -17,23 +19,43 @@ Route::controllers([
 	'password' => 'Auth\PasswordController',
 ]);
 */
-
-Route::resource('recepcion', 'Operadores\RecepcionController');
-Route::resource('despacho', 'Despachadores\DespachadoresController');
-Route::get('estadisticas', 'Estadisticas\EstadisticasController@fecha');
-//Route::get('/', 'Operadores\RecepcionController@recepcion');
+Route::group(
+    array('prefix' => 'admin', 'middleware' => ['auth','admin']), 
+    function() {
+    //Route::resource('recepcion', 'Operadores\RecepcionController');
+    Route::resource('despacho', 'Despachadores\DespachadoresController');
+    Route::get('estadisticas','Estadisticas\EstadisticasController@fecha');
+    Route::get('estadisticas/motivos', 'Estadisticas\EstadisticasController@motivos');
+    Route::get('estadisticas/municipios', 'Estadisticas\EstadisticasController@municipios');
+    //Route::get('estadisticas/motivos', 'Estadisticas\EstadisticasController@motivos');
+    //Route::get('/', 'Operadores\RecepcionController@recepcion');
+    Route::resource('recepcion', 'Operadores\RecepcionController');
+    }
+);
 
 Route::group(
-    array('prefix' => 'admin', 'middleware' => 'auth'), 
+    array('prefix' => 'admin', 'middleware' => ['auth','admin']), 
     function() {
-    	Route::resource('grupos', 'Admin\GruposController');
-        Route::resource('users', 'Admin\UsersController');
+        Route::resource('dashboard', 'Admin\DashboardsController');
+        Route::resource('grupos', 'Admin\GruposController', ['as'=>'grupos']);
+        Route::resource('users', 'Admin\UsersController', ['as'=>'users']);
         Route::resource('organismos', 'Admin\OrganismosController');
         Route::resource('contactos', 'Admin\ContactosController');
         //Route::resource('motivos', ' Admin\RecepcionController');
     }
 );
 
+Route::get('prueba',function(){
+    
+
+    $user = Auth::user();
+    return $user->name.' roles '.$user->roles;
+
+    if (Auth::check()) {
+       return 'estoy logeado';
+    }
+}
+);
 //Route::resource('recepcion', 'RecepcionController');
 
 
@@ -41,13 +63,17 @@ Route::group(
 //Route::get('recepcion', 'RecepcionController@recepcion');
 
 //Route::resource('despacho', 'DespachoController');
-//Route::post('login', 'Auth\AuthController@postLogin');
+
 //Route::get('logout', 'Auth\AuthController@postLogin');
 //Route::auth();
 
 //Route::get('/home', 'HomeController@index');
 
 
-Route::auth();
+//Route::auth();
+Route::get('/', 'Auth\AuthController@getLogin');
+Route::post('/', 'Auth\AuthController@postLogin');
+Route::get('logout', 'Auth\AuthController@logout');
+
 
 Route::get('/home', 'HomeController@index');

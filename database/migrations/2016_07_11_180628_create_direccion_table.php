@@ -17,8 +17,10 @@ class CreateDireccionTable extends Migration
             $table->text('despcricion');
             $table->text('ubicacion');
             $table->text('preferencia');
-            $table->integer('parroquia_id');
-            $table->integer('localidad_id');
+            $table->text('observacion');
+            $table->integer('parroquia_id')->unsigned();
+            $table->integer('municipio_id')->unsigned();
+            //$table->integer('localidad_id');
         });
     }
 

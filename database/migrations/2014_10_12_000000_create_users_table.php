@@ -13,16 +13,30 @@ class CreateUsersTable extends Migration
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->increments('id')->unsigned();
             $table->string('name', 60);
             $table->string('slug', 60);
-            $table->string('email')->unique();
+            $table->string('email',60)->unique();
             $table->string('phone', 12)->unique();
-            $table->enum('roles', ['operador', 'despachador','supervisor','admin','superadmin']);
-            $table->string('password');
+            $table->boolean('sexo');
+            $table->date('fecha_nacimiento');
+            $table->enum('roles', ['operador', 'despachador','supervisor','admin']);
+            //$table->integer('role');
+            $table->string('password',60);
             $table->integer('grupo_id')->unsigned();
+            //$table->Integer('llamada_id')->unsigned()->nullable();
             $table->rememberToken();
             $table->timestamps();  
+        });
+        Schema::create('contacto_user', function(Blueprint $table){
+            $table->engine = 'InnoDB';
+            $table->Increments('id')->unsigned();
+            $table->integer('contacto_id')->unsigned()->nullable(); 
+            //$table->foreign('contacto_id')->references('id')->on('contactos');
+            $table->integer('user_id')->unsigned()->nullable();
+            //$table->foreign('user_id')->references('id')->on('users');
+            $table->timestamps();
         });
     }
 

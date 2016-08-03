@@ -11,7 +11,8 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $guarded = ['id', 'password'];
+
+    protected $guarded = ['id', 'password', 'roles'];
 
     protected $fillable = [
         'name', 'email', 'password',
@@ -28,10 +29,14 @@ class User extends Authenticatable
 
     public function contactos()
     {
-        return $this->hasMany('App\Models\Contacto');
+        return $this->belongsToMany('App\Models\Contacto');
     }
     public function grupo()
     {
         return $this->belongsTo('App\Models\Grupo');
+    }
+      public function llamadas()
+    {
+        return $this->hasMany('App\Models\Llamada');
     }
 }

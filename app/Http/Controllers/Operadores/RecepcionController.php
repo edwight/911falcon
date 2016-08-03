@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Operadores;
 
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests;
 use App\Models\Contacto;
 use App\Models\User;
@@ -11,6 +11,8 @@ use App\Models\Estado;
 use App\Models\Organismo;
 use App\Models\Motivo;
 use App\Models\Municipio;
+use App\Models\Llamada;
+use App\Models\Parroquia;
 use App\Models\Direccion;
 use App\Http\Controllers\Controller;
 use Carbon\Carbon;
@@ -43,12 +45,12 @@ class RecepcionController extends Controller
         //$categorylist = Category::all();
         //return view('admin.contacto.create', compact('user'));
 
-        $user = User::findOrFail(1);
         $municipios = Municipio::all();
+        $parroquias = Parroquia::all();
         $organismos = Organismo::all();
         $motivos = Motivo::all();
         $estados = Estado::all();
-        return view('operadores.Advanced', compact('user','municipios','organismos','motivos','estados'));
+        return view('operadores.Advanced', compact('user','municipios','organismos','motivos','estados','parroquias'));
         //return view('operadores.create', compact('user','municipio','organismo'));
     }
 
@@ -62,10 +64,84 @@ class RecepcionController extends Controller
     {
 
 
+
+        $user = Auth::id();
+        $users = User::find($user);
+        //$fecha = Carbon::now()->toDateTimeString();
+        $fecha = Carbon::today();
+        $submit = $request->input('submit');//required
+        //$llamadas = Llamada::where('created_at', $fecha)->first();
+        //$llamadas = Llamada::whereDay('created_at', '=', date('d'));
+        $llamadas = Llamada::whereDate('created_at', '=', Carbon::today()->toDateString())->first();
+        //dd($llamadas);
+        //return $llamadas->id;
+        if ($llamadas) {
+            //$llamada = Llamada::find();
+            switch ($submit) {
+                case 'registrada':
+                    //$llamadas->increment('registradas');
+                    //$llamadas->registradas = +1;
+                    Llamada::where("user_id", $user)->increment("registradas");
+                    //$llamada->registradas = 1;
+                    $users->llamadas()->save($llamadas);
+                    break;
+                case 'falsas':
+                    //$llamadas->increment('falsas');
+                    Llamada::where("user_id", $user)->increment("falsas");
+                    $users->llamadas()->save($llamadas);
+                    break;
+                case 'quejas':
+                    //$llamadas->increment('quejas');
+                    Llamada::where("user_id", $user)->increment("quejas");
+                    $users->llamadas()->save($llamadas);
+                    break;
+                case 'informativas':                        
+                    # code...
+                    break;
+
+                default:
+                    # code...
+                    break;
+            }
+        }
+        else{
+            
+            $llamada = new Llamada;
+            //Llamada::create(['registradas' => 0,'falsas' => 0,'quejas' => 0]);
+            switch ($submit) {
+                case 'registrada':
+                   // $suma += 1
+                    $llamada->registradas = 1;
+                    $users->llamadas()->save($llamada);
+                    break;
+                case 'falsas':
+                    $llamada->falsas = 1;
+                    $users->llamadas()->save($llamada);
+                    break;
+                case 'quejas':
+                    $llamada->quejas = 1;
+                    $users->llamadas()->save($llamada);
+                    break;
+                case 'informativas':                        
+                    $llamada->informativas = 1;
+                    $users->llamadas()->save($llamada);
+                    break;
+
+                default:
+                    # code...
+                    break;
+            }
+            
+            // return 'false '.$llamadas->created_at;
+        }
+        
+
+/*
+
         $this->validate($request, [
             'telefono' => 'required|max:25|unique:contactos',
             'nombre' => 'required',
-            'cedula' => 'required|unique:contactos',
+            'email' => 'required|unique:contactos',
             'motivos' => 'required',
             'direccion' => 'required',
             ]);
@@ -74,10 +150,11 @@ class RecepcionController extends Controller
 
         $phone = $request->input('telefono');//required
         $nombre = $request->input('nombre');
-        $cedula = $request->input('cedula');
+        $email = $request->input('email');
         $apellido = $request->input('apellido');
 
-        $user = $request->input('user_id');//required
+        //$user = $request->input('user_id');//required
+        $user = Auth::id();
         $motivo = $request->input('motivos');//required
         $municipio = $request->input('municipio');
         $parroquia =  $request->input('parroquia');
@@ -93,7 +170,7 @@ class RecepcionController extends Controller
         $contacto = New Contacto;
         $contacto->nombre = $nombre;
         $contacto->apellido = $apellido;
-        $contacto->cedula = $cedula;
+        $contacto->email = $email;
         $contacto->telefono = $phone;
         $contacto->status = 'false';
         $contacto->type = '171';
@@ -102,19 +179,22 @@ class RecepcionController extends Controller
 
         $contacto->save();
         
-        $users = User::find($user);
-		$users->contactos()->save($contacto);
+        //$users = User::find($user);
+		//$users->contactos()->save($contacto);
 
+        $users = User::find($user);
+        $users->contactos()->attach($contacto);
         //$estado = Estado::find($estado);
-        $organismo = Organismo::find($organismo);
-        //$organismo->contactos()->associate($contacto);
-        $organismo->contactos()->save($contacto);
+        
         
         $estados = Estado::find($estado);
         $estados->contactos()->save($contacto);
 
         $municipios = Municipio::find($municipio);
         $municipios->contactos()->save($contacto);
+
+        $parroquias = Parroquia::find($parroquia);
+        $parroquias->contactos()->save($contacto);
 
         $motivos = Motivo::find($motivo);
         $motivos->contactos()->save($contacto);
@@ -123,11 +203,13 @@ class RecepcionController extends Controller
         $direccion->ubicacion = $ubicacion;
         $direccion->preferencia = $p_referencia;
         $direccion->save();
+
         $direccion->contactos()->save($contacto);
         
-        
+        $organismo = Organismo::find($organismo);
+        $organismo->contactos()->attach($contacto);
 
-        
+   */     
 
 
 /*

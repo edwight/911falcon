@@ -14,9 +14,11 @@ class CreateLlamadasTable extends Migration
     {
          Schema::create('llamadas',function(Blueprint $table){
             $table->Increments('id')->unsigned();
-            $table->integer('falsas')->nullable();
-            $table->integer('quejas')->nullable();
-            $table->integer('registradas')->nullable();
+            $table->integer('falsas')->unsigned();
+            $table->integer('quejas')->unsigned();
+            $table->integer('registradas')->unsigned();
+            $table->integer('informativas')->unsigned();
+            $table->integer('user_id')->unsigned();
             $table->timestamps();  
             //$table->text('descripcion'); 
         });

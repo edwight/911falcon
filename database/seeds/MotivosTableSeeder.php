@@ -125,7 +125,6 @@ class MotivosTableSeeder extends Seeder
         
         
         
-        Motivo::create(['motivo' => 'Invasion','organismo_id'=>'']);
        
 
         Motivo::create(['motivo' => 'Incautacion de droga','organismo_id'=>'']);

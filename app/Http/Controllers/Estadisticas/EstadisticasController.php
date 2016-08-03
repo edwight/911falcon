@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\Contacto;
+use App\Models\Motivo;
 use Carbon\Carbon;
 use DateTime;
 class EstadisticasController extends Controller
@@ -38,6 +39,37 @@ class EstadisticasController extends Controller
 	    	print('<br>'.$contacto->id);
 	    }
 
+	}
+	public function motivos()
+    {
+
+    //$contactos = Contacto::where('fecha_at','2015')->where('fecha_at', '2016')->get(); 
+    //$contactos = Contacto::where('fecha_at', '>', Carbon::now())->get();
+    //$conctatos = Contacto::all();
+    //$motivos = Motivo::find(15);
+    $motivo = Motivo::find(1);
+    return  'hay '.$motivo->contactos()->count().' casos de '.$motivo->motivo.' ';
+	//$contactos = Contacto::all();
+	    foreach($motivos->contactos() as $contacto){
+	    	print('<br>'.$contacto->id);
+	    }
+
+	}
+	public function municipios()
+    {
+
+   	$contactos = Contacto::where('municipio_id','5')->where('motivo_id', '15')->get(); 
+
+   	foreach($contactos as $contacto){
+	    	print('<br>'.' hay '.$contacto->count().' casos de '.$contacto->motivo->motivo.' en '.$contacto->municipio->municipio.' ');
+	    }
+	} 
+
+	public function organismos()
+    {
+
+   	//$contactos = Contacto::where('organismos','5')->where('', '15')->get(); 
+    	
 	}
 
 }

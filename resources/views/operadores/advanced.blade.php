@@ -61,7 +61,7 @@
               <div class="col-md-6">
                 <div class="form-group">
                     {!! Form::label('cedula', 'Cedula', array('for' => 'Inputdni')) !!}
-                    {!! Form::text('cedula', null,['class'=>'form-control','id'=>'Inputdni','name'=>'cedula','placeholder'=>'Cedula'] ) !!}
+                    {!! Form::text('cedula', null,['class'=>'form-control','id'=>'Inputdni','name'=>'email','placeholder'=>'Cedula'] ) !!}
                 </div>
                 <!-- /.form-group -->
                 <div class="form-group">
@@ -126,13 +126,10 @@
                 <div class="form-group">
                     <label for="DireccionInput">Ciudad</label>
                     <select class="form-control select2" name="parroquia" style="width: 100%;">
-                      <option selected="selected">Alabama</option>
-                      <option>Alaska</option>
-                      <option>California</option>
-                      <option>Delaware</option>
-                      <option>Tennessee</option>
-                      <option>Texas</option>
-                      <option>Washington</option>
+                      <option selected="selected"> </option>
+                       @foreach ($parroquias as $parroquia)
+                           <option value="{{ $parroquia->id }}">{{ $parroquia->parroquia }}</option>
+                      @endforeach
                     </select>
                 </div>
                 <!-- /.form-group -->
@@ -167,13 +164,17 @@
             </div>
             <!-- /.row -->
           </div>
-         {!! Form::hidden('user_id', $user->id) !!}
+         <input type="hidden" name="_token" value="{{ csrf_token() }}">
         <!-- /.box-body -->
         <div class="box-footer">
-                <button type="submit" class="btn btn-primary">Submit</button>
-              </div>
+            <button name="submit" value="registrada" type="submit" class="btn btn-primary">Registradas</button>
+            <button name="submit" value="informativas" type="submit" class="btn btn-info">Informativas</button>
+            <button name="submit" value="falsas" type="submit" class="btn btn-danger">Falsas</button>
+            <button name="submit" value="quejas" type="submit" class="btn btn-warning">Quejas</button>
+            </div>
       </div>
       <!-- /.box -->
+      
     {!! Form::close() !!}
     </section>
     <!-- /.content -->

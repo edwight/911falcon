@@ -13,11 +13,23 @@ class CreateOrganismosTable extends Migration
     public function up()
     {
         Schema::create('organismos', function(Blueprint $table){
-            $table->Increments('id')->unsigned();
+            $table->engine = 'InnoDB';
+            $table->Increments('id');
             $table->string('siglas', 60);
             $table->string('nombre', 120);
             $table->string('telefono', 60);
             $table->timestamps();
+        });
+
+        Schema::create('contacto_organismo', function(Blueprint $table){
+            $table->engine = 'InnoDB';
+            $table->Increments('id')->unsigned();
+            $table->integer('contacto_id')->unsigned()->nullable();
+            $table->integer('organismo_id')->unsigned()->nullable();
+            $table->timestamps(); 
+            //$table->foreign('contacto_id')->references('id')->on('contactos');
+            //$table->foreign('organismo_id')->references('id')->on('organismos');
+            
         });
     }
     /**

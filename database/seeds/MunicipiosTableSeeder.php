@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-
+use App\Models\Municipio;
 class MunicipiosTableSeeder extends Seeder
 {
     /**
@@ -11,7 +11,7 @@ class MunicipiosTableSeeder extends Seeder
      */
     public function run()
     {
-        Municipio::create(['municipio' => 'ACOSTA','capital'=>'San Juan de los Cayos','latitude'=>'','longitude'=>'','levelzoom'=>'','estado_id'=>'11','ubigeom_id'=>'1101']);
+        Municipio::create(['municipio' => 'ACOSTA','capital'=>'San Juan de los Cayos','latitude'=>'11.1713708935296','longitude'=>'-68.4004926681519','levelzoom'=>'','estado_id'=>'11','ubigeom_id'=>'1101']);
 
         Municipio::create(['municipio' => 'BOLIVAR','capital'=> '','latitude'=>'', 'longitude'=>'','levelzoom'=>'','estado_id'=>'11','ubigeom_id'=>'1101']);
         Municipio::create(['municipio' => 'BUCHIVACOA','capital'=>'','latitude'=>'', 'longitude'=>'','levelzoom'=>'','estado_id'=>'11','ubigeom_id'=>'1101' ]);

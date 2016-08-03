@@ -20,5 +20,12 @@ class UsersTableSeeder extends Seeder
         	'password' => bcrypt('19252368'),
         	'roles' => 'admin',
         	]);
+        factory('App\Models\User', 1)->create([
+            'name' => 'edwar',
+            'slug' => 'edwar',
+            'email' => 'edwardelgado1@gmail.com',
+            'password' => bcrypt('19252368'),
+            'roles' => 'supervisor',
+            ]);
     }
 }

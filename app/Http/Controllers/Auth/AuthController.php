@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\Models\User;
 use Validator;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
@@ -78,5 +80,18 @@ class AuthController extends Controller
         $user->roles = 'operador';
         $user->save();
         return $user;
+    }
+     protected function getLogin()
+    {
+        return view('auth.login');
+    }
+    protected function postLogin(Request $request)
+    {
+        $email = $request->input('email');//required
+        $password = $request->input('password');//required
+        if (Auth::attempt(['email' => $email, 'password' => $password])) {
+            // Authentication passed...
+            return redirect()->intended('admin/dashboard');
+        }
     }
 }
