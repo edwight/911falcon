@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\Contacto;
 use App\Models\Motivo;
+use App\Models\Organismo;
 use Carbon\Carbon;
 use DateTime;
 class EstadisticasController extends Controller
@@ -67,8 +68,35 @@ class EstadisticasController extends Controller
 
 	public function organismos()
     {
-
-   	//$contactos = Contacto::where('organismos','5')->where('', '15')->get(); 
+    	//tadas
+    	$organismos = organismo::all(); 
+    	foreach ($organismos as $organismo) {
+    		print "<ul> id".$organismo->id." nombre ".$organismo->siglas." </ul> <br>";
+    			print ' <li> tiene '.$organismo->contactos->count().' casos ';
+    			//foreach ($organismo->contactos as $organismosc) {
+    			//	print ' <li> hay '.$organismosc->count().' casos de </li> ';
+    			//}
+    		  //return  'hay '.$organismo->contactos()->count().' casos de '.$motivo->motivo.' ';
+    	}
+    	
+	}
+	public function organismosHoy()
+    {
+    	//hoy
+    	$organismos = organismo::where('updated_at','>=', Carbon::today()); 
+    	if($organismo){
+    		foreach ($organismos as $organismo) {
+    		print "<ul> id".$organismo->id." nombre ".$organismo->siglas." </ul> <br>";
+    			print ' <li> tiene '.$organismo->contactos->count().' casos ';
+    			//foreach ($organismo->contactos as $organismosc) {
+    			//	print ' <li> hay '.$organismosc->count().' casos de </li> ';
+    			//}
+    		  //return  'hay '.$organismo->contactos()->count().' casos de '.$motivo->motivo.' ';
+    		}
+    	}
+    	else{
+    		print('no hay organismos');
+    	}
     	
 	}
 

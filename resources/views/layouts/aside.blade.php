@@ -37,6 +37,7 @@
             <li><a href="../../index2.html"><i class="fa fa-circle-o"></i> Dashboard v2</a></li>
           </ul>
         </li>
+        @if(Auth::user()->roles == 'admin')
         <li class="treeview">
           <a href="#">
             <i class="fa fa-files-o"></i>
@@ -48,11 +49,17 @@
           <ul class="treeview-menu">
             <li><a href="{{ asset('admin/users') }}"><i class="fa fa-circle-o"></i>lista de usuarios</a></li>
             <li><a href="{{ asset('admin/users/create') }}"><i class="fa fa-circle-o"></i>Crear Usuario</a></li>
-            
+            <li><a href="{{ asset('admin/grupos') }}"><i class="fa fa-circle-o"></i>Lista de Grupos</a></li>
+            <li><a href="{{ asset('admin/grupos/create') }}"><i class="fa fa-circle-o"></i>Crear Grupos</a></li>
           </ul>
         </li>
+        @endif
+        @if(Auth::user()->roles == 'admin' || Auth::user()->roles == 'supervisor' ||  Auth::user()->roles == 'operador')
         <li><a href="{{ asset('admin/recepcion/create') }}"><i class="fa fa-book"></i> <span>Recepcion de llamadas</span></a></li>
+        @endif
+        @if(Auth::user()->roles == 'admin' || Auth::user()->roles == 'supervisor' ||  Auth::user()->roles == 'despachador')
         <li><a href="{{ asset('admin/despacho') }}"><i class="fa fa-book"></i> <span>Despacho de llamadas</span></a></li>
+        @endif
         <li>
           <a href="../widgets.html">
             <i class="fa fa-th"></i> <span>Widgets</span>
@@ -106,6 +113,7 @@
             <li><a href="editors.html"><i class="fa fa-circle-o"></i> Editors</a></li>
           </ul>
         </li>
+
         <li class="treeview">
           <a href="#">
             <i class="fa fa-table"></i> <span>Tables</span>
@@ -114,10 +122,13 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="../tables/simple.html"><i class="fa fa-circle-o"></i> Simple tables</a></li>
-            <li><a href="../tables/data.html"><i class="fa fa-circle-o"></i> Data tables</a></li>
+            <li><a href="../tables/simple.html"><i class="fa fa-circle-o"></i> Reporte de Casos</a></li>
+            <li><a href="../tables/data.html"><i class="fa fa-circle-o"></i> Reporte de Organismos</a></li>
+            <li><a href="../tables/data.html"><i class="fa fa-circle-o"></i> Reporte de Motivos</a></li>
+            <li><a href="../tables/data.html"><i class="fa fa-circle-o"></i> Reporte de Municipios</a></li>
           </ul>
         </li>
+
         <li>
           <a href="../calendar.html">
             <i class="fa fa-calendar"></i> <span>Calendar</span>

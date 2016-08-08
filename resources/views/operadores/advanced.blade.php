@@ -22,7 +22,70 @@
       <div class="box box-default">
         <div class="box-header with-border">
           <h3 class="box-title">Select2</h3>
-
+<!-- ----------------------------------------------------- -->
+              <div class="row">
+                <div class="col-sm-3 col-xs-6">
+                  <div class="description-block border-right">
+                    <span class="description-percentage text-primary"><i class="ion-stats-bars"></i> 17%</span>
+                    <h5 class="description-header">
+                    @if($llamadas)
+                      {{ $llamadas->registradas }}
+                    @else
+                      0
+                    @endif
+                    </h5>
+                    <span class="description-text text-primary">Registradas</span>
+                  </div>
+                  <!-- /.description-block -->
+                </div>
+                <!-- /.col -->
+                <div class="col-sm-3 col-xs-6">
+                  <div class="description-block border-right">
+                    <span class="description-percentage text-green"><i class="ion-stats-bars"></i> 0%</span>
+                    <h5 class="description-header">
+                    @if($llamadas)
+                      {{ $llamadas->informativas }}
+                    @else
+                      0
+                    @endif
+                    </h5>
+                    <span class="description-text text-green">Informativas</span>
+                  </div>
+                  <!-- /.description-block -->
+                </div>
+                <!-- /.col -->
+                <div class="col-sm-3 col-xs-6">
+                  <div class="description-block border-right">
+                    <span class="description-percentage text-orange"><i class="ion-stats-bars"></i> 20%</span>
+                    <h5 class="description-header">
+                    @if($llamadas)
+                      {{ $llamadas->quejas }}
+                    @else
+                      0
+                    @endif
+                    </h5>
+                    <span class="description-text text-orange">Quejas</span>
+                  </div>
+                  <!-- /.description-block -->
+                </div>
+                <!-- /.col -->
+                <div class="col-sm-3 col-xs-6">
+                  <div class="description-block">
+                    <span class="description-percentage text-red"><i class="ion-stats-bars"></i> 18%</span>
+                    <h5 class="description-header">
+                    @if($llamadas)
+                      {{ $llamadas->falsas }}
+                     @else
+                      0
+                    @endif
+                      </h5>
+                    <span class="description-text text-red">Falsas</span>
+                  </div>
+                  <!-- /.description-block -->
+                </div>
+              </div>
+              <!-- /.row -->
+            <!-- ----------------------------------------------------- -->
              <div class="panel-body">
                 @if (count($errors) > 0)
                     <div class="alert alert-danger">

@@ -50,7 +50,11 @@ class RecepcionController extends Controller
         $organismos = Organismo::all();
         $motivos = Motivo::all();
         $estados = Estado::all();
-        return view('operadores.Advanced', compact('user','municipios','organismos','motivos','estados','parroquias'));
+
+        $user = Auth::id();
+        $llamadas = Llamada::where('user_id',$user)->orderBy('id','desc')->first();
+      
+        return view('operadores.Advanced', compact('user','municipios','organismos','motivos','estados','parroquias','llamadas'));
         //return view('operadores.create', compact('user','municipio','organismo'));
     }
 
@@ -62,9 +66,6 @@ class RecepcionController extends Controller
      */
     public function store(Request $request)
     {
-
-
-
         $user = Auth::id();
         $users = User::find($user);
         //$fecha = Carbon::now()->toDateTimeString();
@@ -72,7 +73,7 @@ class RecepcionController extends Controller
         $submit = $request->input('submit');//required
         //$llamadas = Llamada::where('created_at', $fecha)->first();
         //$llamadas = Llamada::whereDay('created_at', '=', date('d'));
-        $llamadas = Llamada::whereDate('created_at', '=', Carbon::today()->toDateString())->first();
+        $llamadas = Llamada::where('user_id','=',$user)->whereDate('created_at', '=', Carbon::today()->toDateString())->first();
         //dd($llamadas);
         //return $llamadas->id;
         if ($llamadas) {
@@ -96,7 +97,8 @@ class RecepcionController extends Controller
                     $users->llamadas()->save($llamadas);
                     break;
                 case 'informativas':                        
-                    # code...
+                    Llamada::where("user_id", $user)->increment("informativas");
+                    $users->llamadas()->save($llamadas);
                     break;
 
                 default:
@@ -105,7 +107,7 @@ class RecepcionController extends Controller
             }
         }
         else{
-            
+
             $llamada = new Llamada;
             //Llamada::create(['registradas' => 0,'falsas' => 0,'quejas' => 0]);
             switch ($submit) {
@@ -117,12 +119,13 @@ class RecepcionController extends Controller
                 case 'falsas':
                     $llamada->falsas = 1;
                     $users->llamadas()->save($llamada);
+                    return redirect('admin/recepcion/create');
                     break;
                 case 'quejas':
                     $llamada->quejas = 1;
                     $users->llamadas()->save($llamada);
                     break;
-                case 'informativas':                        
+                case 'informativas':                      
                     $llamada->informativas = 1;
                     $users->llamadas()->save($llamada);
                     break;
@@ -135,9 +138,6 @@ class RecepcionController extends Controller
             // return 'false '.$llamadas->created_at;
         }
         
-
-/*
-
         $this->validate($request, [
             'telefono' => 'required|max:25|unique:contactos',
             'nombre' => 'required',
@@ -145,7 +145,7 @@ class RecepcionController extends Controller
             'motivos' => 'required',
             'direccion' => 'required',
             ]);
-
+        
        //return $request->all();
 
         $phone = $request->input('telefono');//required
@@ -208,8 +208,7 @@ class RecepcionController extends Controller
         
         $organismo = Organismo::find($organismo);
         $organismo->contactos()->attach($contacto);
-
-   */     
+ 
 
 
 /*
@@ -241,7 +240,7 @@ class RecepcionController extends Controller
         //$direccion->motivos->attach($direccion);
         //$contacto->direcciones()->save($direcciones);
 
-        return redirect('recepcion/create');
+        return redirect('admin/recepcion/create');
          /*
         $rules = [
             'phone' => 'required|numeric',

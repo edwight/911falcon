@@ -36,6 +36,7 @@
   <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
+  @yield('css')
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
@@ -273,6 +274,7 @@
 <script type="text/javascript" src="{{ asset('/dist/js/app.min.js') }}"></script>
 <!-- AdminLTE for demo purposes -->
 <script type="text/javascript" src="{{ asset('/dist/js/demo.js') }}"></script>
+
 <!-- Page script -->
 @yield('javascript')
 <script>

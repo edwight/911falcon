@@ -17,4 +17,8 @@ class Organismo extends Model
         //return $this->hasMany('App\Models\Contacto');
         return $this->belongsToMany('App\Models\Contacto');
     }
+    public function users()
+    {
+        return $this->belongsToMany('App\Models\User');
+    }
 }

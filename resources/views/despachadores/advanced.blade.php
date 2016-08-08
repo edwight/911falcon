@@ -42,8 +42,71 @@
         </div>
         <!-- /.box-header -->
         {!! Form::open(['action' =>'Despachadores\DespachadoresController@store','role'=>'form']) !!}
-
           <div class="box-body">
+            <!-- ----------------------------------------------------- -->
+              <div class="row">
+                <div class="col-sm-3 col-xs-6">
+                  <div class="description-block border-right">
+                    <span class="description-percentage text-primary"><i class="ion-stats-bars"></i> 17%</span>
+                    <h5 class="description-header">
+                    @if($casos)
+                      {{ $casos->efectivos }}
+                    @else
+                      0
+                    @endif
+                    </h5>
+                    <span class="description-text text-primary">Efectivo</span>
+                  </div>
+                  <!-- /.description-block -->
+                </div>
+                <!-- /.col -->
+                <div class="col-sm-3 col-xs-6">
+                  <div class="description-block border-right">
+                    <span class="description-percentage text-red"><i class="ion-stats-bars"></i> 0%</span>
+                    <h5 class="description-header">
+                    @if($casos)
+                      {{ $casos->sinefecto }}
+                    @else
+                      0
+                    @endif
+                    </h5>
+                    <span class="description-text text-red">Sin Efecto</span>
+                  </div>
+                  <!-- /.description-block -->
+                </div>
+                <!-- /.col -->
+                <div class="col-sm-3 col-xs-6">
+                  <div class="description-block border-right">
+                    <span class="description-percentage text-orange"><i class="ion-stats-bars"></i> 20%</span>
+                    <h5 class="description-header">
+                    @if($casos)
+                      {{ $casos->noatendida }}
+                    @else
+                      0
+                    @endif
+                    </h5>
+                    <span class="description-text text-orange">No Atendido</span>
+                  </div>
+                  <!-- /.description-block -->
+                </div>
+                <!-- /.col -->
+                <div class="col-sm-3 col-xs-6">
+                  <div class="description-block">
+                    <span class="description-percentage text-green"><i class="ion-stats-bars"></i> 18%</span>
+                    <h5 class="description-header">
+                    @if($casos)
+                      {{ $casos->repetida }}
+                     @else
+                      0
+                    @endif
+                      </h5>
+                    <span class="description-text text-green">Repetido</span>
+                  </div>
+                  <!-- /.description-block -->
+                </div>
+              </div>
+              <!-- /.row -->
+            <!-- ----------------------------------------------------- -->
             <div class="row">
               <div class="col-md-6">
                  <div class="form-group">
@@ -115,7 +178,7 @@
               <div class="col-md-4">
                 <div class="form-group">
                     <label for="DireccionInput">Ciudad</label>
-                    <input type="text" class="form-control" placeholder="Enter ..." disabled="">
+                    <input type="text" value="{{$contacto->parroquia->parroquia}}" class="form-control" placeholder="Enter ..." disabled="">
                 </div>
                 <!-- /.form-group -->
               </div>
@@ -123,7 +186,7 @@
               <div class="col-md-6">
                 <div class="form-group">
                     <label for="DireccionInput">Organismos</label>
-                    <input type="text" class="form-control" placeholder="Enter ..." disabled="">
+                    <input type="text" value="" class="form-control" placeholder="Enter ..." disabled="">
                 </div>
                 <!-- /.form-group -->
               </div>
@@ -136,17 +199,32 @@
                 <!-- /.form-group -->
               </div>
               <!-- /.col -->
+              <div class="col-md-12">
+                <div class="form-group">
+                    {!! Form::label('observacion', 'Observacion', array('for' => 'Inputdescripcion')) !!}
+                    <textarea class="form-control" name="observacion" rows="10" placeholder="Enter ... Observacion">{{ $contacto->direccion->observacion }}</textarea>
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+              {!! Form::hidden('direccionh',$contacto->direccion->id) !!}
+              {!! Form::hidden('contactoh',$contacto->id) !!}
+              {!! Form::hidden('status',$contacto->status) !!}
             </div>
             <!-- /.row -->
           </div>
-         {!! Form::hidden('user_id', $user->id) !!}
-        <!-- /.box-body -->
+         <!-- /.box-body -->
         <div class="box-footer">
-                <button type="submit" class="btn btn-primary">Submit</button>
-              </div>
-      </div>
-      <!-- /.box -->
-    {!! Form::close() !!}
+            <button name="submit" value="efectivo" type="submit" class="btn btn-primary">Efectivo</button>
+            <button name="submit" value="sinefecto" type="submit" class="btn btn-info">Sin Efecto</button>
+            <button name="submit" value="noatendida" type="submit" class="btn btn-danger">No Atendido</button>
+            <button name="submit" value="repetida" type="submit" class="btn btn-danger">Repetida</button>
+            <button name="submit" value="apoyo" type="submit" class="btn btn-warning">Apoyo</button>
+            </div>
+        </div>
+        <!-- /.box -->
+          
+        {!! Form::close() !!}
     </section>
     <!-- /.content -->
   </div>

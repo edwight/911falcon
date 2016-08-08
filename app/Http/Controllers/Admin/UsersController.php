@@ -7,6 +7,7 @@ use Hash;
 use App\Http\Requests;
 use App\Models\User;
 use App\Models\Grupo;
+use App\Models\Organismo;
 use App\Http\Controllers\Controller;
 
 class UsersController extends Controller
@@ -21,7 +22,8 @@ class UsersController extends Controller
 	public function create()
 	{
 		$grupolist = Grupo::all();
-		return View('admin.user.create',compact('grupolist'));
+        $organismos = Organismo::all();
+		return View('admin.user.create',compact('grupolist','organismos'));
 	}
 	 public function store(Request $request)
     {
@@ -35,11 +37,12 @@ class UsersController extends Controller
             'grupos' => 'required'
             ]);
 
-       //return $request->all();
+       return $request->all();
         $phone = $request->input('telefono');//required
         $name = $request->input('nombre');
         $cedula = $request->input('cedula');
         $grupo = $request->input('grupos');
+        $organismos = $request->input('organismos');
         $roles = $request->input('type');
         $password = $request->input('password');
 
@@ -58,6 +61,9 @@ class UsersController extends Controller
 
 		$grupos->users()->save($user);
         
+        //$organismo = Organismo::find($organismos);
+
+        //$organismo->users()->attach($user);
 
         return redirect('admin/users/');
         

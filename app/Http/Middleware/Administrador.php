@@ -33,7 +33,11 @@ class Administrador
                 # code...
                 //return redirect()->to('admin/recepcion');
             break;
-            
+            case 'despacho':
+                # code...
+                return redirect()->to('recepcion');
+            break;
+
             default:
                 # code...
                 break;

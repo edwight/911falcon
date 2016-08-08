@@ -72,15 +72,20 @@
                 <div class="col-md-4">
                   <div class="form-group">
                       <label for="DireccionInput">Roles</label>
-                      {{Form::select('type',[''=>'selecione tipo','operador'=>'operador','despachador'=>'despachador','supervisor'=>'supervisor','admi   n'=>'admin'], null,['class'=>'form-control select2','style'=>'width:100%;']) }}
+                      {{Form::select('type',[''=>'selecione tipo','operador'=>'operador','despachador'=>'despachador','supervisor'=>'supervisor','admin'=>'admin'], null,['class'=>'form-control select2','style'=>'width:100%;']) }}
                   </div>
                   <!-- /.form-group -->
                 </div>
                 <!-- /.col -->
                 <div class="col-md-4">
                   <div class="form-group">
-                      <label for="DireccionInput">Sexo</label>
-                      <input type="textarea" class="form-control" id="DireccionInput" placeholder="Direccion">
+                      <label for="DireccionInput">Organismos</label>
+                      <select class="form-control select2" style="width: 100%;">
+                        <option selected="selected">selecione un Organismos</option>
+                        @foreach ($organismos as $organismo)
+                               <option value="{{ $organismo->id }}">{{ $organismo->siglas }}</option>
+                        @endforeach
+                      </select>
                   </div>
                   <!-- /.form-group -->
                 </div>

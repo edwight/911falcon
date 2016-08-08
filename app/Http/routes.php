@@ -27,6 +27,7 @@ Route::group(
     Route::get('estadisticas','Estadisticas\EstadisticasController@fecha');
     Route::get('estadisticas/motivos', 'Estadisticas\EstadisticasController@motivos');
     Route::get('estadisticas/municipios', 'Estadisticas\EstadisticasController@municipios');
+    Route::get('estadisticas/organismos', 'Estadisticas\EstadisticasController@organismos');
     //Route::get('estadisticas/motivos', 'Estadisticas\EstadisticasController@motivos');
     //Route::get('/', 'Operadores\RecepcionController@recepcion');
     Route::resource('recepcion', 'Operadores\RecepcionController');

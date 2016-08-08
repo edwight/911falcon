@@ -35,8 +35,16 @@ class User extends Authenticatable
     {
         return $this->belongsTo('App\Models\Grupo');
     }
-      public function llamadas()
+    public function llamadas()
     {
         return $this->hasMany('App\Models\Llamada');
+    }
+    public function casos()
+    {
+        return $this->hasMany('App\Models\Caso');
+    }
+    public function organismos()
+    {
+        return $this->belongsToMany('App\Models\Organismo');
     }
 }

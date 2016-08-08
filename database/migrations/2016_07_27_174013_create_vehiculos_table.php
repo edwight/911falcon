@@ -12,7 +12,14 @@ class CreateVehiculosTable extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('vehiculos',function(Blueprint $table){
+            $table->Increments('id')->unsigned();
+            $table->string('nombre',120);
+            $table->string('tipo',120)->nullable();
+            $table->string('matricula')->nullable();
+            $table->integer('organismo_id')->unsigned();
+            $table->timestamps();  
+        });
     }
 
     /**
@@ -22,6 +29,6 @@ class CreateVehiculosTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::drop('vehiculos');
     }
 }
