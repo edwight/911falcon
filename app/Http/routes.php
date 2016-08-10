@@ -28,6 +28,10 @@ Route::group(
     Route::get('estadisticas/motivos', 'Estadisticas\EstadisticasController@motivos');
     Route::get('estadisticas/municipios', 'Estadisticas\EstadisticasController@municipios');
     Route::get('estadisticas/organismos', 'Estadisticas\EstadisticasController@organismos');
+    Route::get('estadisticas/organismosHoy', 'Estadisticas\EstadisticasController@organismosHoy');
+    Route::get('estadisticas/llamadasHoy', 'Estadisticas\EstadisticasController@llamadasHoy');
+    Route::get('estadisticas/casosHoy', 'Estadisticas\EstadisticasController@casosHoy');
+    Route::get('estadisticas/municipiosMotivos', 'Estadisticas\EstadisticasController@municipiosMotivos');
     //Route::get('estadisticas/motivos', 'Estadisticas\EstadisticasController@motivos');
     //Route::get('/', 'Operadores\RecepcionController@recepcion');
     Route::resource('recepcion', 'Operadores\RecepcionController');

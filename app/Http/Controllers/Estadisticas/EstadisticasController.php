@@ -11,6 +11,8 @@ use App\Models\Motivo;
 use App\Models\Organismo;
 use Carbon\Carbon;
 use DateTime;
+use App\Models\Llamada;
+use App\Models\Caso;
 class EstadisticasController extends Controller
 {
 	public function fecha()
@@ -69,7 +71,7 @@ class EstadisticasController extends Controller
 	public function organismos()
     {
     	//tadas
-    	$organismos = organismo::all(); 
+    	$organismos = Organismo::has('contactos')->get(); 
     	foreach ($organismos as $organismo) {
     		print "<ul> id".$organismo->id." nombre ".$organismo->siglas." </ul> <br>";
     			print ' <li> tiene '.$organismo->contactos->count().' casos ';
@@ -83,10 +85,13 @@ class EstadisticasController extends Controller
 	public function organismosHoy()
     {
     	//hoy
-    	$organismos = organismo::where('updated_at','>=', Carbon::today()); 
-    	if($organismo){
+    	//$organismos = Organismo::all();
+        $organismos = Organismo::has('contactos')->get(); 
+        $org = $organismos->contactos->where('fecha_at','>=', Carbon::today())->get();
+    	if($organismos){
     		foreach ($organismos as $organismo) {
     		print "<ul> id".$organismo->id." nombre ".$organismo->siglas." </ul> <br>";
+ 
     			print ' <li> tiene '.$organismo->contactos->count().' casos ';
     			//foreach ($organismo->contactos as $organismosc) {
     			//	print ' <li> hay '.$organismosc->count().' casos de </li> ';
@@ -99,5 +104,70 @@ class EstadisticasController extends Controller
     	}
     	
 	}
-
+    public function llamadasHoy()
+    {
+        return 'sfsf';    
+    }
+    public function casosHoy()
+    {
+        $efectivos  = $sinefecto = $repetida = 0;
+        //hoy true
+        //$llamadas = Llamada::where('updated_at','>=', Carbon::today())->get(); 
+        $casos = Caso::where('created_at','>=', Carbon::today())->get(); 
+        //return $llamadas->id;
+        foreach ($casos as $caso) {
+            print "<ul> id ".$caso->id." efectivos ".$caso->efectivos." quejas ".$caso->sinefecto." registradas ".$caso->repetida." usuarios ".$caso->user->name."</ul><br>";
+                //foreach ($llamada->contactos as $organismosc) {
+                //  print ' <li> hay '.$organismosc->count().' casos de </li> ';
+                //}
+              //return  'hay '.$llamada->falsas->count().'  ';
+            $efectivos += $caso->efectivos;
+            $sinefecto += $caso->sinefecto;
+            $repetida += $caso->repetida;
+        } 
+        print 'total de llamadas'.$casos->count().' efectivas: '.$efectivos.' sin efecto '.$sinefecto.' repetidas '.$repetida.'<br>';
+    }
+    public function casosFecha()
+    {
+        $efectivos  = $sinefecto = $repetida = 0;
+        $fecha = '';
+        //hoy
+        //$llamadas = Llamada::where('updated_at','>=', Carbon::today())->get(); 
+        $casos = Caso::where('created_at','>=', $fecha)->get(); 
+        //return $llamadas->id;
+        foreach ($casos as $caso) {
+            print "<ul> id ".$caso->id." efectivos ".$caso->efectivos." quejas ".$caso->sinefecto." registradas ".$caso->repetida." usuarios ".$caso->user->name."</ul><br>";
+                //foreach ($llamada->contactos as $organismosc) {
+                //  print ' <li> hay '.$organismosc->count().' casos de </li> ';
+                //}
+              //return  'hay '.$llamada->falsas->count().'  ';
+            $efectivos += $caso->efectivos;
+            $sinefecto += $caso->sinefecto;
+            $repetida += $caso->repetida;
+        } 
+        print 'total de llamadas'.$casos->count().' efectivas: '.$efectivos.' sin efecto '.$sinefecto.' repetidas '.$repetida.'<br>';
+    }
+    public function llamadasycasos()
+    {
+        $efectivos  = $sinefecto = $repetida = 0;
+        $fecha = '';
+        //hoy
+        //$llamadas = Llamada::where('updated_at','>=', Carbon::today())->get(); 
+        $users = User::where('created_at','>=', Carbon::today())->get(); 
+        //return $llamadas->id;
+        foreach ($uses as $user->llamadas){
+            
+        } 
+        print 'total de llamadas'.$casos->count().' efectivas: '.$efectivos.' sin efecto '.$sinefecto.' repetidas '.$repetida.'<br>';
+    }
+    public function municipiosMotivos()
+    {
+    
+        //motivos por municipios
+        //$llamadas = Llamada::where('updated_at','>=', Carbon::today())->get(); 
+        $municipios = Contacto::where('municipio_id','1')->where('motivo_id','6')->get(); 
+        $motivos = Motivo::find('6');
+        //return $llamadas->id;
+        print 'hay '.$municipios->count().' casos de '.$motivos->motivo.'<br>';
+    }
 }

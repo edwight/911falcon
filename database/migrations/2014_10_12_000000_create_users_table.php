@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('email',60)->unique();
             $table->string('phone', 12)->unique();
             $table->boolean('sexo');
+            $table->boolean('status');
             $table->date('fecha_nacimiento');
             $table->enum('roles', ['operador', 'despachador','supervisor','admin']);
             //$table->integer('role');

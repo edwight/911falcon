@@ -144,7 +144,163 @@ class CuadrantesTableSeeder extends Seeder
          	'municipio_id'=>'10',//miranda
          	'sectores'=>'LOS LIBERTADORES, CAJUARAO, LA BOMBA, SECTOR LAS HUERTAS']
          	);
-        
+
+        Motivo::create(
+        ['cuadrante' => 'P-2',
+            'telefono'=>'0416-610-47-03',
+            'organismo_id'=>'1',//polifalcon
+            'municipio_id'=>'4',//carirubana
+            'sectores'=>'ANTIGUO AEROPUERTO, LA CHINITA, VILLA DEL MAR, EZEQUIEL ZAMORA, SANTA ROSALÍA']
+            );
+         Motivo::create(
+        ['cuadrante' => 'P-3',
+            'telefono'=>'0416-610-47-01',
+            'organismo_id'=>'1',//polifalcon
+            'municipio_id'=>'4',//carirubana
+            'sectores'=>'SANTA ELENA, LOS PINOS, ANTONIO JOSE DE SUCRE.']
+            );
+        Motivo::create(
+        ['cuadrante' => 'P-4',
+            'telefono'=>'0416-610-41-00',
+            'organismo_id'=>'1',//polifalcon
+            'municipio_id'=>'4',//carirubana
+            'sectores'=>'BANCO OBRERO, LAS PIEDRAS, LA BOSTA, NUEVO PUEBLO NORTE Y SUR, LA SALINETA.']
+            );
+        Motivo::create(
+            ['cuadrante' => 'P-5',
+                'telefono'=>'0416-610-48-00',
+                'organismo_id'=>'2',//policaribubana
+                'municipio_id'=>'4',//carirubana
+                'sectores'=>'CAJA DE AGUA, BRISAS DE SANTA ELENA']
+            );
+        Motivo::create(
+        ['cuadrante' => 'P-6',
+            'telefono'=>'0416-610-47-98',
+            'organismo_id'=>'2',//policaribubana
+            'municipio_id'=>'4',//carirubana
+            'sectores'=>'TROPICANA, CUJIANA, BARRIO LA ROSA, BARRIO MODELO, BELLA VISTA, BLOQUE VTV.']
+            );
+        Motivo::create(
+        ['cuadrante' => 'P-7',
+            'telefono'=>'0416-610-48-04',
+            'organismo_id'=>'2',//policaribubana
+            'municipio_id'=>'4',//carirubana
+            'sectores'=>'URB. MARIA AUXILIADORA, SECTOR SAMBIL, SECTOR UNIVERSITARIO, LAS ADJUNTAS.']
+            );
+        Motivo::create(
+        ['cuadrante' => 'P-8',
+            'telefono'=>'0416-610-44-73',
+            'organismo_id'=>'2',//policaribubana
+            'municipio_id'=>'4',//carirubana
+            'sectores'=>'CARIRUBANA, ANDRES ELOY BLANCO, BARRIO INDUSTRIAL']
+            );
+        Motivo::create(
+        ['cuadrante' => 'P-9',
+            'telefono'=>'0416-610-44-55',
+            'organismo_id'=>'',//gnb-desur
+            'municipio_id'=>'4',//carirubana
+            'sectores'=>'CENTRO, BARRIO BOLIVAR, SAN FRANCISCO JAVIER']
+            );
+        Motivo::create(
+        ['cuadrante' => 'P-10',
+            'telefono'=>'0416-610-44-53',
+            'organismo_id'=>'1',//polifalcon
+            'municipio_id'=>'4',//carirubana
+            'sectores'=>'JOSEFA CAMEJO, SANTA IRENE']
+            );
+        Motivo::create(
+        ['cuadrante' => 'P-11',
+            'telefono'=>'0416-610-44-68',
+            'organismo_id'=>'2',//policalirubana
+            'municipio_id'=>'4',//carirubana
+            'sectores'=>'LAS MARGARITAS, LA ESMERALDA, LOS CACIQUES, LOS CAPTUS.']
+            );
+        Motivo::create(
+        ['cuadrante' => 'P-12',
+            'telefono'=>'0416-610-44-72',
+            'organismo_id'=>'2',//policaricubana
+            'municipio_id'=>'4',//carirubana
+            'sectores'=>'EL CARDÓN, LA COLONIA, PARAGUANÁ MALL, CIUDAD FEDERACIÓN.']
+            );
+        Motivo::create(
+        ['cuadrante' => 'P-13',
+            'telefono'=>'0416-610-44-69',
+            'organismo_id'=>'',//GNB-DESUR
+            'municipio_id'=>'4',//carirubana
+            'sectores'=>'ZARABÓN, MARAVEN, LOS MARISTAS.']
+            );
+        Motivo::create(
+        ['cuadrante' => 'P-14',
+            'telefono'=>'0416-610-44-61',
+            'organismo_id'=>'',//GNB-132
+            'municipio_id'=>'4',//carirubana
+            'sectores'=>'LAS MERCEDES, PEDRO MANUEL ARCAYA, TERMINAL DE PASAJEROS.']
+            );
+        Motivo::create(
+        ['cuadrante' => 'P-15',
+            'telefono'=>'0416-610-44-52',
+            'organismo_id'=>'',//DSUR-132
+            'municipio_id'=>'4',//carirubana
+            'sectores'=>'BICENTENARIO, PUNTA CARDÓN, LOS ROSALES.']
+            );
+        Motivo::create(
+        ['cuadrante' => 'P-16',
+            'telefono'=>'0416-610-41-51',
+            'organismo_id'=>'1',//polifalcon
+            'municipio_id'=>'4',//carirubana
+            'sectores'=>'PUERTA MARAVEN,  23 DE ENERO, URB ESPAÑA']
+            );
+
+        Motivo::create(
+        ['cuadrante' => 'P-1',
+            'telefono'=>'0416-610-40-52',
+            'organismo_id'=>'1',//polifalcon
+            'municipio_id'=>'5',//colina
+            'sectores'=>'SABANA LARGA, LAS MALVINAS']
+            );
+        Motivo::create(
+        ['cuadrante' => 'P-2',
+            'telefono'=>'0416-610-40-53',
+            'organismo_id'=>' ',//GNB-131
+            'municipio_id'=>'5',//colina
+            'sectores'=>'LA VELA DE CORO (NORTE )']
+            );
+        Motivo::create(
+        ['cuadrante' => 'P-3',
+            'telefono'=>'0416-610-40-64',
+            'organismo_id'=>'1',//polifalcon
+            'municipio_id'=>'5',//colina
+            'sectores'=>'LA VELA DE CORO (SUR)']
+            );
+
+        Motivo::create(
+        ['cuadrante' => 'P-1',
+            'telefono'=>'0416-610-40-57',
+            'organismo_id'=>' ',//PNB
+            'municipio_id'=>'12',//silva
+            'sectores'=>'SECTOR 4, PUNTE FLECHADO, NUE,VA TUCACAS, TUQUE UNO, VENETUR, CASCO CENTRAL']
+            );
+        Motivo::create(
+        ['cuadrante' => 'P-2',
+            'telefono'=>'0416-610-42-46',
+            'organismo_id'=>' ',//PNB
+            'municipio_id'=>'12',//silva
+            'sectores'=>'BARRIO SANTA ROSA, BARRIO ISAAC, COMPLEJO TURISTICO, AV LIBERTADOR, AV SILVA.']
+            );
+        Motivo::create(
+        ['cuadrante' => 'P-3',
+            'telefono'=>'0416-610-44-57',
+            'organismo_id'=>'1',//polifalcon
+            'municipio_id'=>'12',//silva
+            'sectores'=>'SAID 1, SAID 2, LOS CORALES']
+            );
+        Motivo::create(
+        ['cuadrante' => 'P-4',
+            'telefono'=>'0416-610-40-62',
+            'organismo_id'=>'1',//polifalcon
+            'municipio_id'=>'12',//silva
+            'sectores'=>'CARACARAS, LAS DELICIAS, ALCABALA, BOCA DE AROA, BARRIO CARTÓN']
+            );
     }
 
 }

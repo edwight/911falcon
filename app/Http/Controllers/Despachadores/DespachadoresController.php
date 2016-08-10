@@ -124,44 +124,30 @@ class DespachadoresController extends Controller
 
         if($status)
         {
-           return $status;
+            $direccion = Direccion::find($direccionh);
+            $direccion->observacion = $observacion;
+            $direccion->save();
+            return redirect('admin/despacho');
         }
         else{
             $contactos = Contacto::find($contactoh);
             $contactos->status ='1';
             $contactos->save();
 
-            //$contatos->where('user'observacion = $observacion;
 
             $users = User::find($user);
-            //$users->contactos()->save($contacto);
+
             $users->contactos()->attach($contactos);
 
-            //$users = User::find($user);
-            //$users->contactos()->attach($contacto);
-            //$estado = Estado::find($estado);
             
 
             $direccion = Direccion::find($direccionh);
             $direccion->observacion = $observacion;
-            //$direccion->preferencia = $p_referencia;
             $direccion->save();
-            //$direccion->contactos()->save($contacto);
-            
-            //$organismo = Organismo::find($organismo);
-            //$organismo->contactos()->attach($contacto);
             
 
             return redirect('admin/despacho');
         }
     
-    }
-    public function update(Request $request)
-    {
-
-        $direccion = Direccion::find($direccionh);
-        $direccion->observacion = $observacion;
-        $direccion->save();
-            
     }
 }

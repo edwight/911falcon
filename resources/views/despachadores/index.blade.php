@@ -96,6 +96,7 @@
 	                  <th>Operador</th>
                     <th>Organismos</th>
 	                  <th>Estatus</th>
+                    <th>fecha</th>
 	                </tr>
                 </thead>
                 <tbody>
@@ -116,7 +117,8 @@
                   @endforeach
                   </td>
 				          <td><small class="label pull-right bg-blue">no activo</small></td>
-					</tr>
+                  <td>{{ $contactos->fecha_at }}</small></td>
+					       </tr>
                 	@else
                 	<tr>
 					  <th scope="row"><a href=" /admin/despacho/{{ $contactos->id}}">{{ $contactos->telefono }}</a></th>
