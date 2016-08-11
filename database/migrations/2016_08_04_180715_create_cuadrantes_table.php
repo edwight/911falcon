@@ -22,6 +22,14 @@ class CreateCuadrantesTable extends Migration
             $table->integer('ubigeom_id')->unsigned();
             $table->integer('ubigeop_id')->unsigned();
         });
+        Schema::create('cuadrante_motivo', function(Blueprint $table){
+            $table->engine = 'InnoDB';
+            $table->Increments('id')->unsigned();
+            $table->integer('cantidad')->unsigned()->nullable();
+            $table->integer('cuadrante_id')->unsigned()->nullable();
+            $table->integer('motivo_id')->unsigned()->nullable();
+            $table->timestamps(); 
+        });
     }
 
     /**

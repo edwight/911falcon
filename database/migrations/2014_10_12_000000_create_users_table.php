@@ -19,6 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('slug', 60);
             $table->string('email',60)->unique();
             $table->string('phone', 12)->unique();
+            $table->string('foto', 100)->default('/imgs/users/avatar.png');
             $table->boolean('sexo');
             $table->boolean('status');
             $table->date('fecha_nacimiento');

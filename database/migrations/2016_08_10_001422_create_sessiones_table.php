@@ -20,6 +20,7 @@ class CreateSessionesTable extends Migration
             $table->integer('endTime')->unsigned();
             $table->integer('user_id')->unsigned();
             $table->timestamps();  
+        });
     }
 
     /**
@@ -29,6 +30,6 @@ class CreateSessionesTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::drop('sessiones');
     }
 }

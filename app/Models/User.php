@@ -47,4 +47,11 @@ class User extends Authenticatable
     {
         return $this->belongsToMany('App\Models\Organismo');
     }
+    public function setPasswordAttribute($value)
+    {
+        if(!empty($value))
+        {
+            $this->attributes['password'] = bcrypt($value);
+        }
+    }
 }

@@ -21,14 +21,14 @@
     	<div class="row">
         <div class="col-lg-3 col-xs-6">
           <!-- small box -->
-          <div class="small-box bg-aqua">
+          <div class="small-box bg-red">
             <div class="inner">
-              <h3>150</h3>
+              <h3>{{$admin}}</h3>
 
-              <p>Usuarios Online</p>
+              <p>Usuarios Administrador</p>
             </div>
             <div class="icon">
-              <i class="ion ion-bag"></i>
+              <i class="ion ion-person"></i>
             </div>
             <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
@@ -36,44 +36,44 @@
         <!-- ./col -->
         <div class="col-lg-3 col-xs-6">
           <!-- small box -->
+          <div class="small-box bg-yellow"">
+            <div class="inner">
+              <h3>{{$supervisor}}</h3>
+
+              <p>Usuarios Supervisores</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-person"></i>
+            </div>
+            <a href="http://localhost:8000/admin/users" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-aqua">
+            <div class="inner">
+              <h3>{{$despachador}}</h3>
+
+              <p>Usuarios Despachadores</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-person"></i>
+            </div>
+            <a href="http://localhost:8000/admin/users" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
           <div class="small-box bg-green">
             <div class="inner">
-              <h3>53<sup style="font-size: 20px">%</sup></h3>
+              <h3>{{$operador}}</h3>
 
-              <p>Modulo Estadisticas</p>
+              <p>Usuarios Operadores</p>
             </div>
             <div class="icon">
-              <i class="ion ion-stats-bars"></i>
-            </div>
-            <a href="http://localhost:8000/admin/users" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-          </div>
-        </div>
-        <!-- ./col -->
-        <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <div class="small-box bg-yellow">
-            <div class="inner">
-              <h3>101</h3>
-
-              <p>Modulo Usuarios</p>
-            </div>
-            <div class="icon">
-              <i class="ion ion-person-add"></i>
-            </div>
-            <a href="http://localhost:8000/admin/users" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-          </div>
-        </div>
-        <!-- ./col -->
-        <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <div class="small-box bg-red">
-            <div class="inner">
-              <h3>65</h3>
-
-              <p>Unique Visitors</p>
-            </div>
-            <div class="icon">
-              <i class="ion ion-pie-graph"></i>
+              <i class="ion ion-person"></i>
             </div>
             <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
@@ -107,7 +107,7 @@
                 	{
                 		background-color: #00a65a !important;
                 	}
-                	.label-despacho
+                	.label-despachador
                 	{
                 		background-color: #3c8dbc !important;
                 	}
@@ -122,7 +122,7 @@
                 </style>
                	@foreach($user as $users)
 					<tr>
-					  <th scope="row">{{ $users->id}}</th>
+					  <th scope="row"><a href="/admin/users/{{ $users->id }}">{{ $users->id}}</a></th>
 			          <td>{{ $users->name }}</td>
 			          <td>{{ $users->email }}</td>
 			          <td><span class="label label-{{ $users->roles }}">{{ $users->roles }}</span></td>

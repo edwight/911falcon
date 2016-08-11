@@ -137,20 +137,20 @@ class RecepcionController extends Controller
             
             // return 'false '.$llamadas->created_at;
         }
-        
+        /*
         $this->validate($request, [
             'telefono' => 'required|max:25|unique:contactos',
             'nombre' => 'required',
-            'email' => 'required|unique:contactos',
+            'cedula' => 'required',
             'motivos' => 'required',
             'direccion' => 'required',
             ]);
         
        //return $request->all();
-
+        */
         $phone = $request->input('telefono');//required
         $nombre = $request->input('nombre');
-        $email = $request->input('email');
+        $cedula = $request->input('cedula');
         $apellido = $request->input('apellido');
 
         //$user = $request->input('user_id');//required
@@ -165,15 +165,14 @@ class RecepcionController extends Controller
         $estado = $request->input('estado');//required
 
         $date = Carbon::now(); //2015-01-01 00:00:00
-        $duracion = $request->input('duraccion');
 
         $contacto = New Contacto;
         $contacto->nombre = $nombre;
         $contacto->apellido = $apellido;
-        $contacto->email = $email;
+        $contacto->cedula = $cedula;
         $contacto->telefono = $phone;
-        $contacto->status = 'false';
-        $contacto->type = '171';
+        $contacto->status = '0';
+        //$contacto->type = '171';
         $contacto->fecha_at = $date;
         //$contacto->direccion = $direccion;
 
@@ -199,6 +198,8 @@ class RecepcionController extends Controller
         $motivos = Motivo::find($motivo);
         $motivos->contactos()->save($contacto);
 
+
+
         $direccion = New Direccion;
         $direccion->ubicacion = $ubicacion;
         $direccion->preferencia = $p_referencia;
@@ -209,7 +210,18 @@ class RecepcionController extends Controller
         $organismo = Organismo::find($organismo);
         $organismo->contactos()->attach($contacto);
  
-
+        
+        $motivos = Motivo::find($motivo);
+        $motivos->municipios()->save($municipios);
+        
+        /*
+        $motivos = Motivo::find($motivo);
+        $motivos->parroquias()->save($parroquias);
+        */
+        /*
+        $cuadrantes = Cuadrante::find($cuadrante);
+        $cuadrantes->motivos()->save($motivos);
+        */
 
 /*
         $llamadas = New Llamada;

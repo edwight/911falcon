@@ -21,12 +21,19 @@ class Motivo extends Model
 
     public function organismos()
     {
-      return $this->belongsTo('App\Models\Organismo');
+      return $this->belongsToMany('App\Models\Organismo');
     }
     public function contactos()
     {
       return $this->hasMany('App\Models\Contacto');
     }
-
+    public function municipios()
+    {
+        return $this->belongsToMany('App\Models\Municipio');
+    }
+    public function parroquias()
+    {
+        return $this->belongsToMany('App\Models\Parroquia');
+    }
 
 }

@@ -15,7 +15,11 @@ class CreateLocalidadTable extends Migration
         Schema::create('localidad', function(Blueprint $table){
             $table->Increments('id')->unsigned();
             $table->string('nombre', 60);
+            $table->integer('municipio_id')->unsigned()->nullable();
             $table->integer('parroquia_id')->unsigned()->nullable();
+            $table->integer('ubigeom_id')->unsigned();
+            $table->integer('ubigeop_id')->unsigned();
+            $table->integer('ubigeol_id')->unsigned();
         });
     }
 

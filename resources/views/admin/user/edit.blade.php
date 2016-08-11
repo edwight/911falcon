@@ -19,14 +19,27 @@
         <div class="box box-default">
             <div class="box-header with-border">
               <h3 class="box-title">Select2</h3>
-
+                <div class="panel-body">
+                @if (count($errors) > 0)
+                    <div class="alert alert-danger">
+                        <strong>Whoops!</strong> There were some problems with your input.<br><br>
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+              </div>
               <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
                 <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i></button>
               </div>
             </div>
             <!-- /.box-header -->
-            {!! Form::model($user, array('route' => array('admin.users.update', $user->id))) !!}
+            
+            {!! Form::model(['action' =>'Admin\UsersController@update','method' => 'put', $user->id,'role'=>'form','files' => true]) !!}
+            <input name="_method" type="hidden" value="PUT">
             <div class="box-body">
               <div class="row">
                 <div class="col-md-6">
@@ -58,8 +71,8 @@
                 <div class="col-md-4">
                   <div class="form-group">
                       <label for="DireccionInput">Grupo</label>
-                      <select class="form-control select2" style="width: 100%;">
-                        <option selected="selected">{{$user->grupo}}</option>
+                      <select name="grupos" class="form-control select2" style="width: 100%;">
+                        <option selected="selected">{{$user->grupo->name}}</option>
                         @foreach ($grupolist as $grupo)
                                <option value="{{ $grupo->id }}">{{ $grupo->name }}</option>
                         @endforeach
@@ -71,7 +84,7 @@
                 <div class="col-md-4">
                   <div class="form-group">
                       <label for="DireccionInput">Roles</label>
-                        <select class="form-control select2" style="width: 100%;">
+                        <select name="type" class="form-control select2" style="width: 100%;">
                             <option selected="selected">{{$user->roles}}</option>
                             <option value="operador">operador</option>
                             <option value="despachador">despachador</option>
@@ -84,8 +97,13 @@
                 <!-- /.col -->
                 <div class="col-md-4">
                   <div class="form-group">
-                      <label for="DireccionInput">Sexo</label>
-                      <input type="textarea" class="form-control" id="DireccionInput" placeholder="Direccion">
+                      <label for="DireccionInput">Organismos</label>
+                      <select name="organismos" class="form-control select2" style="width: 100%;">
+                        <option selected="selected">  </option>
+                        @foreach ($organismos as $organismo)
+                               <option value="{{ $organismo->id }}">{{ $organismo->siglas }}</option>
+                        @endforeach
+                      </select>
                   </div>
                   <!-- /.form-group -->
                 </div>

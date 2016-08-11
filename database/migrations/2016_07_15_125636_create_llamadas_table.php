@@ -16,6 +16,7 @@ class CreateLlamadasTable extends Migration
             $table->Increments('id')->unsigned();
             $table->integer('falsas')->unsigned();
             $table->integer('quejas')->unsigned();
+            $table->integer('sabotaje')->unsigned();
             $table->integer('registradas')->unsigned();
             $table->integer('informativas')->unsigned();
             $table->integer('user_id')->unsigned();

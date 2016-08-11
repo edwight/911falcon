@@ -124,7 +124,7 @@
               <div class="col-md-6">
                 <div class="form-group">
                     {!! Form::label('cedula', 'Cedula', array('for' => 'Inputdni')) !!}
-                    {!! Form::text('cedula', null,['class'=>'form-control','id'=>'Inputdni','name'=>'email','placeholder'=>'Cedula'] ) !!}
+                    {!! Form::text('cedula', null,['class'=>'form-control','id'=>'Inputdni','name'=>'cedula','placeholder'=>'Cedula'] ) !!}
                 </div>
                 <!-- /.form-group -->
                 <div class="form-group">
@@ -159,10 +159,10 @@
               </div>
               <!-- /.col -->
 
-              <div class="col-md-4">
+              <div class="col-md-3">
                 <div class="form-group">
                     <label for="DireccionInput">Estado</label>
-                    <select class="form-control select2" name="estado" style="width: 100%;">
+                    <select id="estado" class="form-control select2" name="estado" style="width: 100%;">
                       <option selected="selected" value="11">Falcòn</option>
                       @foreach ($estados as $estado)
                           <option value="{{ $estado->id }}">{{ $estado->entidad }}</option>
@@ -172,10 +172,10 @@
                 <!-- /.form-group -->
               </div>
               <!-- /.col -->
-              <div class="col-md-4">
+              <div class="col-md-3">
                 <div class="form-group">
                     <label for="DireccionInput">Municipio</label>
-                    <select class="form-control select2" name="municipio" style="width: 100%;">
+                    <select id="municipio" class="form-control select2" name="municipio" style="width: 100%;">
                       <option selected="selected"> </option>
                       @foreach ($municipios as $municipio)
                            <option value="{{ $municipio->id }}">{{ $municipio->municipio }}</option>
@@ -185,10 +185,10 @@
                 <!-- /.form-group -->
               </div>
               <!-- /.col -->
-              <div class="col-md-4">
+              <div class="col-md-3">
                 <div class="form-group">
-                    <label for="DireccionInput">Ciudad</label>
-                    <select class="form-control select2" name="parroquia" style="width: 100%;">
+                    <label for="DireccionInput">Parroquia</label>
+                    <select id="parroquia" class="form-control select2" name="parroquia" style="width: 100%;">
                       <option selected="selected"> </option>
                        @foreach ($parroquias as $parroquia)
                            <option value="{{ $parroquia->id }}">{{ $parroquia->parroquia }}</option>
@@ -198,6 +198,18 @@
                 <!-- /.form-group -->
               </div>
               <!-- /.col -->
+              <div class="col-md-3">
+                <div class="form-group">
+                    <label for="DireccionInput">Localidad</label>
+                    <select class="form-control select2" name="localidad" style="width: 100%;">
+                      <option selected="selected"> </option>
+                      
+                    </select>
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+
               <div class="col-md-6">
                 <div class="form-group">
                     <label for="DireccionInput">Organismos</label>
@@ -242,4 +254,14 @@
     </section>
     <!-- /.content -->
   </div>
+@endsection
+
+@section('javascript')
+<!-- 
+<script src="{{ asset('plugins/chained/jquery.chained.min.js') }} "></script>
+<script type="text/javascript">
+  $("#municipio").chained("#estado");
+  $("#parroquia").chained("#municipio");
+</script>
+-->
 @endsection
